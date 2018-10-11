@@ -10,3 +10,6 @@ import matplotlib.pyplot as plt
 G= nx.Graph()
 G.add_nodes_from([1,5])
 print (list(G.nodes))
+
+
+# hola
