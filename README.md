@@ -69,5 +69,5 @@ The final report can be found on the visiting the following link: [Click Here](h
   1. [Bárbara Patricia González Rivera](https://github.com/gonzaba)
   2. [Enrique Antonio Marrero Torres](https://github.com/enrique-AMT)
   3. [Alberto Antonio Canela Cubero](https://github.com/alberto-canela)
-  4. Raúl André Vargas Frechel
+  4. [Raúl André Vargas Frechel](https://github.com/PentiumFallen)
 
