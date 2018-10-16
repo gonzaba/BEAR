@@ -28,11 +28,10 @@ WIP
 
 
 Oleksandr Kaleniuk says: 
- ```
-“...the distinct feature of 21st-century language design is the absence of any distinct features in the languages themselves.”
+
+>“...the distinct feature of 21st-century language design is the absence of any distinct features in the languages themselves.”
 “They don’t have anything new in them at all; they are all made by the “something done right” formula, this something being Objective-C, Java or C.”
 
-```
 
 After reading Kaleniuk’s article, we can only nod in agreement. 
 
