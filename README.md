@@ -3,11 +3,17 @@
 ## Table of Contents
 
 [Introduction](https://github.com/gonzaba/BEAR#indroduction)
+
 [Project Demo](https://github.com/gonzaba/BEAR#project-demo)
+
 [Language Features](https://github.com/gonzaba/BEAR#language-features)
+
 [Implementation and Requirement Tools](https://github.com/gonzaba/BEAR#implementation-and-requirement-tools)
+
 [Project Plan and Timeline](https://github.com/gonzaba/BEAR#project-plan-and-timeline)
+
 [Final Report](https://github.com/gonzaba/BEAR#final-report)
+
 [Creators](https://github.com/gonzaba/BEAR#creators)
 
 ## Indroduction
@@ -55,6 +61,8 @@ Each node and connection, of course, must be able to carry a lot of individual i
 
 
 ## Final Report
+
+The final report can be found on the visiting the following link: [Click Here](https://docs.google.com/document/d/1BGKyqMT-UpjX2Upgg2JDWsCdSWxdvCNxa8dhTDRPt0k/edit?usp=sharing)
 
 
 ## Creators
