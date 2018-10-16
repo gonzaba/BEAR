@@ -1,12 +1,17 @@
 # BEAR
 
-##Table of Contents	
+## Table of Contents
 
--Introduction	
--Language Features	
--Project Demo
+[Introduction](https://github.com/gonzaba/BEAR#indroduction)
+
+Language Features	
+
+[Project Demo](https://github.com/gonzaba/BEAR#project-demo)
+
 -Implementation and Requirement Tools
+
 -Project Plan and Timeline
+
 -Final Report
 
 ## Indroduction
