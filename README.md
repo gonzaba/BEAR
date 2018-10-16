@@ -3,16 +3,12 @@
 ## Table of Contents
 
 [Introduction](https://github.com/gonzaba/BEAR#indroduction)
-
-Language Features	
-
 [Project Demo](https://github.com/gonzaba/BEAR#project-demo)
-
--Implementation and Requirement Tools
-
--Project Plan and Timeline
-
--Final Report
+[Language Features](https://github.com/gonzaba/BEAR#language-features)
+[Implementation and Requirement Tools](https://github.com/gonzaba/BEAR#implementation-and-requirement-tools)
+[Project Plan and Timeline](https://github.com/gonzaba/BEAR#project-plan-and-timeline)
+[Final Report](https://github.com/gonzaba/BEAR#final-report)
+[Creators](https://github.com/gonzaba/BEAR#creators)
 
 ## Indroduction
 
@@ -61,7 +57,7 @@ Each node and connection, of course, must be able to carry a lot of individual i
 ## Final Report
 
 
-##Creators
+## Creators
   1. Bárbara Patricia González Rivera
   2. Enrique Antonio Marrero Torres
   3. Alberto Antonio Canela Cubero
