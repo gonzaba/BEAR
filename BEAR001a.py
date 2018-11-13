@@ -24,7 +24,7 @@ import ply.yacc as yacc
 def p_add(p):
     '''node + [ file , node ] '''
 def p_define(p):
-  '''  'BEAR' ~ function '''
+    '''  'BEAR' ~ function '''
 # Ignore tabs
 t_ignore = " \t"
 filename=input("Welcome to BEAR! Please enter your code's filename to compile. (NOTE: file must be in .cub format): \n")
@@ -33,7 +33,35 @@ if(not filename.__contains__('.cub')):
 print(filename)
 
 # HONEY class for auxiliary functions
-# class Honey (object):
-    #TODO: Add auxiliary operations!
+class Honey:
+    # adding a new network
+    def newNetwork(self,name):
+        self = nx.DiGraph()
+        self.graph['name']=name
+
+    # various methods to add person along with defaults
+    def addPerson(self,g,name,age,gender,grade,vax,infect):
+        g.add_node(name)
+        g.node[name]['name']=name
+        g.node[name]['age']=age
+        g.node[name]['gender']=gender
+        g.node[name]['grade']=grade
+        g.node[name]['vaccinated']=vax
+        g.node[name]['infected']=infect
+    def addPerson(self,g,name):
+        addPerson(g,name,0,'N/A',0,False,False)
+    def addPerson(self,g,name,age):
+        addPerson(g,name,age,'N/A',0,False,False)
+    def addPerson(self,g,name,age,gender):
+        addPerson(g,name,age,gender,0,False,False)
+    def addPerson(self,g,name,age,gender,grade):
+        addPerson(g,name,age,gender,grade,False,False)
+    def addPerson(self,g,name,age,gender,grade,vax):
+        addPerson(g,name,age,gender,grade,vax,False)
+
+    # methods for connections
+    
+
+#TODO: Add auxiliary operations!
 # hola
 # HI
