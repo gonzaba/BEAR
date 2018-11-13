@@ -11,7 +11,7 @@ M =nx.Graph()
 
 #ask the user for the name of the file to use to create the graph
 fileName = input("Complete File Name to use: \n")
-fileName2 = input("SECOND")
+fileName2 = input("Second File Name to use: \n")
 
 #now its looking for the file
 file = open(fileName, 'r')
@@ -21,19 +21,15 @@ for line in file:
     if line != '\n':
         line = line.strip()
         person = line.split(',')
-    # 0- Name
-    # 1- Age
-    # 2- Gender
-    # 3- Birth Place
-    # 4- Current Location
-    # 5- Number of Vaccines
-    # 6- Race
-    # 7- Last Trip
-    # 8-Place Last Visited
+        # 0- Name
+        # 1- Age
+        # 2- Gender
+        # 3- Grade
+        # 4- Vaccinated
+        # 5- Infected
 
-        #print(person)
-        G.add_node(person[0], age = person[1], gender = person[2], birthplace = person[3], currentLocation = person[4], numVaccines = person[5], race = person[6], lastTrip = person[7], placeVisited = person[8])
-
+        # print(person)
+        G.add_node(person[0], age=person[1], gender=person[2], grade=person[3], vaccinated=person[4],infected=person[5])
 
 
 file.close()
@@ -51,16 +47,12 @@ for line in file:
         # 0- Name
         # 1- Age
         # 2- Gender
-        # 3- Birth Place
-        # 4- Current Location
-        # 5- Number of Vaccines
-        # 6- Race
-        # 7- Last Trip
-        # 8-Place Last Visited
+        # 3- Grade
+        # 4- Vaccinated
+        # 5- Infected
 
         # print(person)
-        M.add_node(person[0], age=person[1], gender=person[2], birthplace=person[3], currentLocation=person[4],
-                   numVaccines=person[5], race=person[6], lastTrip=person[7], placeVisited=person[8])
+        M.add_node(person[0], age=person[1], gender=person[2], grade=person[3], vaccinated=person[4], infected=person[5])
 
 file.close()
 
