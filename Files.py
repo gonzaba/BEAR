@@ -2,9 +2,10 @@ import networkx as nx
 
 numberOfGraphs = 0
 graphList = []
+ref = []
 
 def createGraph():
-        global numberOfGraphs
+        global numberOfGraphs, ref
         global graphList
         numberOfGraphs += 1
         graphName = input("What is going to be the name of the graph? \n")
@@ -13,6 +14,7 @@ def createGraph():
             graphName = input("A graph with that name already exists. Please choose another one.\n")
 
         locals()[graphName]= nx.Graph()
+        ref.append(locals()[graphName])
         graphList.append(graphName)
         #print(graphList)
 
@@ -34,9 +36,8 @@ def createGraph():
                 # 5- Infected
 
                 # print(person)
-                locals()[graphName].add_node(person[0], age=person[1], gender=person[2], grade=person[3], vaccinated=person[4],
-                           infected=person[5])
-
+                locals()[graphName].add_node(person[0], age=person[1], gender=person[2], grade=person[3], vaccinated=person[4], infected=person[5])
+                #print(locals()[graphName].nodes(data=True))
         file.close()
 
 def viewListOfGraphs():
@@ -51,16 +52,49 @@ def viewListOfGraphs():
        print("They are", end =" ")
        print(graphList)
 
+def displayGraph():
+    global graphList, numberOfGraphs, ref
+    if numberOfGraphs == 0:
+        print("There are no graphs. Please create one.")
+    print(graphList)
+    graphName = input("Which graph do you want to display?\n")
+    while graphName not in graphList:
+        print("Graph does not exists. Please try again. \n")
+    i = graphList.index(graphName)
+    print(ref[i].nodes(data=True))
 
+def union():
+    global graphList, numberOfGraphs, ref
+    index1 =0
+    index2 =0
+    if numberOfGraphs < 2:
+        print("There is only one graph. Please create another graph.")
+    else:
+        print(graphList)
+        first = input("Which is the first graph? \n")
+        index1 = graphList.index(first)
+        second = input("Which is the second graph? \n")
+        index2 = graphList.index(second)
 
+        graphName = input("What name will the union of graphs be?")
+
+        numberOfGraphs += 1
+        while graphName in graphList:
+            graphName = input("A graph with that name already exists. Please choose another one.\n")
+
+        locals()[graphName] = nx.union(ref[index1],ref[index2])
+        ref.append(locals()[graphName])
+        graphList.append(graphName)
 
 
 
 
 createGraph()
+createGraph()
+displayGraph()
+union()
 viewListOfGraphs()
-createGraph()
-
+displayGraph()
 
 #Create new Graph
 #R =nx.Graph()
