@@ -32,14 +32,33 @@ if(not filename.__contains__('.cub')):
     print("unsupported file format!")
 print(filename)
 
-# HONEY class for auxiliary functions
+"""
+HONEY class for auxiliary functions
+User must input data as specified in order to comply with data types
+newNetwork
+    name is a string
+addPerson
+    g is a graph
+    name, gender are string
+    age, grade are int
+    vax, infect are bool
+addConnection
+    g is a graph
+    p1, p2 are node
+addLink
+    g is a graph
+    p1, p2 are node
+    att is a string
+    val is a free type value
+"""
+
 class Honey:
     # adding a new network
     def newNetwork(self,name):
         self = nx.DiGraph()
         self.graph['name']=name
 
-    # various methods to add person along with defaults
+    # method to add person
     def addPerson(self,g,name,age,gender,grade,vax,infect):
         g.add_node(name)
         g.node[name]['name']=name
@@ -48,20 +67,12 @@ class Honey:
         g.node[name]['grade']=grade
         g.node[name]['vaccinated']=vax
         g.node[name]['infected']=infect
-    def addPerson(self,g,name):
-        addPerson(g,name,0,'N/A',0,False,False)
-    def addPerson(self,g,name,age):
-        addPerson(g,name,age,'N/A',0,False,False)
-    def addPerson(self,g,name,age,gender):
-        addPerson(g,name,age,gender,0,False,False)
-    def addPerson(self,g,name,age,gender,grade):
-        addPerson(g,name,age,gender,grade,False,False)
-    def addPerson(self,g,name,age,gender,grade,vax):
-        addPerson(g,name,age,gender,grade,vax,False)
 
     # methods for connections
-    def addConnection(self,p1,p2):
-
+    def addConnection(self,g,p1,p2):
+        g.add_edge(p1,p2)
+    def addLink(self,g,p1,p2,att,val):
+        g[p1][p2][att]=val
 
 #TODO: Add auxiliary operations!
 # hola
