@@ -1,20 +1,33 @@
 import networkx as nx
 
+
 numberOfGraphs = 0
+
+#List of graphs. NOTE this is only the names of it. NOT the reference to the graph
 graphList = []
+#Here are the references to each graph created. This DOES NOT contain the names of it
 ref = []
 
+#The link between graphList and ref is the index.
+
+
+#Create graph
 def createGraph():
-        global numberOfGraphs, ref
-        global graphList
+        global numberOfGraphs, ref, graphList
+        #Add to the number of graphs one
         numberOfGraphs += 1
+
         graphName = input("What is going to be the name of the graph? \n")
 
+        #While that name is already taken, keep asking the user to use another one
         while graphName in graphList:
             graphName = input("A graph with that name already exists. Please choose another one.\n")
 
+        #create a new graph with the name given by the user
         locals()[graphName]= nx.Graph()
+        #add the reference to the ref list
         ref.append(locals()[graphName])
+        #add the name of the list to the graphList
         graphList.append(graphName)
         #print(graphList)
 
@@ -40,9 +53,10 @@ def createGraph():
                 #print(locals()[graphName].nodes(data=True))
         file.close()
 
+#View the list graphs that currently exists.
 def viewListOfGraphs():
    global graphList, numberOfGraphs
-
+    #If this is true, then there are no graphs to display
    if numberOfGraphs ==0:
        print("There are no graphs. Please create one.")
    else:
@@ -51,6 +65,7 @@ def viewListOfGraphs():
        print("graphs.")
        print("They are", end =" ")
        print(graphList)
+
 
 def displayGraph():
     global graphList, numberOfGraphs, ref
