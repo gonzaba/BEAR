@@ -42,6 +42,12 @@ addPerson
     name, gender are string
     age, grade are int
     vax, infect are bool
+editPerson
+    g is a graph
+    p is a node
+    att is a string
+    val is a free type value
+    ######SHOULD VERIFY VALID ATTRIBUTE######
 addConnection
     g is a graph
     p1, p2 are node
@@ -67,6 +73,8 @@ class Honey:
         g.node[name]['grade']=grade
         g.node[name]['vaccinated']=vax
         g.node[name]['infected']=infect
+    def editPerson(self,g,p,att,val):
+        g.node[p][att]=val
 
     # methods for connections
     def addConnection(self,g,p1,p2):
