@@ -5,6 +5,7 @@ the number of vaccines a person has helps prevent getting the disease.
 """
 import networkx as nx
 
+
 #Create empty graph with no nodes and no edges
 G=nx.Graph()
 M =nx.Graph()
@@ -56,10 +57,12 @@ for line in file:
 
 file.close()
 
-
+#Create new Graph
 R =nx.Graph()
+#Graph is the union of G and M. AKA combining both lists.
 R = nx.union(G,M)
 
 print (R.nodes(data=True))
+
 
 
