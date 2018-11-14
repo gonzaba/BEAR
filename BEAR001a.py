@@ -60,7 +60,8 @@ class Honey:
         addPerson(g,name,age,gender,grade,vax,False)
 
     # methods for connections
-    
+    def addConnection(self,p1,p2):
+
 
 #TODO: Add auxiliary operations!
 # hola
