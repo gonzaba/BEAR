@@ -16,11 +16,12 @@ def createGraph():
         #Add to the number of graphs one
         numberOfGraphs += 1
 
-        graphName = input("What is going to be the name of the network? \n")
+        print("CREATE NEW NETWORK\n")
+        graphName = input("What is going to be the name of the network? ")
 
         #While that name is already taken, keep asking the user to use another one
         while graphName in graphList:
-            graphName = input("A network with that name already exists. Please choose another one.\n")
+            graphName = input("A network with that name already exists. Please choose another one. ")
 
         #create a new graph with the name given by the user
         locals()[graphName]= nx.Graph()
@@ -31,7 +32,7 @@ def createGraph():
         #print(graphList)
 
         # ask the user for the name of the file to use to create the graph
-        fileName = input("File Name to use: \n")
+        fileName = input("File Name to use: ")
         # now its looking for the file
         file = open(fileName, 'r')
 
@@ -55,6 +56,7 @@ def createGraph():
 #View the list graphs that currently exists.
 def viewListOfGraphs():
    global graphList, numberOfGraphs
+   print("LIST OF NETWORKS\n")
     #If this is true, then there are no graphs to display
    if numberOfGraphs ==0:
        print("There are no networks. Please create one.")
@@ -68,34 +70,36 @@ def viewListOfGraphs():
 
 def displayGraph():
     global graphList, numberOfGraphs, ref
+    print("DISPLAY A NETWORK\n")
     if numberOfGraphs == 0:
         print("There are no networks. Please create one.")
     print(graphList)
-    graphName = input("Which network do you want to display?\n")
+    graphName = input("Which network do you want to display? ")
     while graphName not in graphList:
-        print("Network does not exists. Please try again. \n")
+        print("Network does not exists. Please try again. ")
     i = graphList.index(graphName)
     print(ref[i].nodes(data=True))
 
 
 def union():
     global graphList, numberOfGraphs, ref
+    print("UNION OF NETWORKS\n")
     index1 =0
     index2 =0
     if numberOfGraphs < 2:
         print("There is only one network. Please create another network.")
     else:
         print(graphList)
-        first = input("Which is the first network? \n")
+        first = input("Which is the first network? ")
         index1 = graphList.index(first)
-        second = input("Which is the second network? \n")
+        second = input("Which is the second network? ")
         index2 = graphList.index(second)
 
-        graphName = input("What name will the union of networks be?")
+        graphName = input("What name will the union of networks be? ")
 
         numberOfGraphs += 1
         while graphName in graphList:
-            graphName = input("A network with that name already exists. Please choose another one.\n")
+            graphName = input("A network with that name already exists. Please choose another one. ")
 
         locals()[graphName] = nx.union(ref[index1],ref[index2])
         ref.append(locals()[graphName])
@@ -104,22 +108,23 @@ def union():
 
 def disjointUnion():
     global graphList, numberOfGraphs, ref
+    print("DISJOINT UNION OF NETWORKS\n")
     index1 =0
     index2 =0
     if numberOfGraphs < 2:
         print("There is only one network. Please create another network.")
     else:
         print(graphList)
-        first = input("Which is the first network? \n")
+        first = input("Which is the first network? ")
         index1 = graphList.index(first)
-        second = input("Which is the second network? \n")
+        second = input("Which is the second network? ")
         index2 = graphList.index(second)
 
-        graphName = input("What name will the disjoint_union of networks be?")
+        graphName = input("What name will the disjoint_union of networks be? ")
 
         numberOfGraphs += 1
         while graphName in graphList:
-            graphName = input("A network with that name already exists. Please choose another one.\n")
+            graphName = input("A network with that name already exists. Please choose another one. ")
 
         locals()[graphName] = nx.disjoint_union(ref[index1],ref[index2])
         ref.append(locals()[graphName])
@@ -130,19 +135,20 @@ def disjointUnion():
 #returns  A deepcopy of the graph.
 def undirectedCopy():
     global graphList, numberOfGraphs, ref
+    print("UNDIRECTED COPY\n")
     index1 = 0
     if numberOfGraphs < 1:
         print("A network doesn't exist. Please create one.")
     else:
         print(graphList)
-        first = input("Which network do you want to convert to undirected? \n")
+        first = input("Which network do you want to convert to undirected? ")
         index1 = graphList.index(first)
 
-        graphName = input("What name will the copy have?")
+        graphName = input("What name will the copy have? ")
 
         numberOfGraphs += 1
         while graphName in graphList:
-            graphName = input("A network with that name already exists. Please choose another one.\n")
+            graphName = input("A network with that name already exists. Please choose another one. ")
 
         locals()[graphName] = nx.convert_to_undirected(ref[index1])
         ref.append(locals()[graphName])
@@ -153,19 +159,20 @@ def undirectedCopy():
 # Returns A directed graph with the same name, same nodes, and with each edge (u,v,data) replaced by two directed edges (u,v,data) and (v,u,data).
 def directedCopy():
     global graphList, numberOfGraphs, ref
+    print("DIRECTED COPY\n")
     index1 = 0
     if numberOfGraphs < 1:
         print("A network doesn't exist. Please create one.")
     else:
         print(graphList)
-        first = input("Which network do you want to convert to directed? \n")
+        first = input("Which network do you want to convert to directed? ")
         index1 = graphList.index(first)
 
-        graphName = input("What name will the copy have?")
+        graphName = input("What name will the copy have? ")
 
         numberOfGraphs += 1
         while graphName in graphList:
-            graphName = input("A network with that name already exists. Please choose another one.\n")
+            graphName = input("A network with that name already exists. Please choose another one. ")
 
         locals()[graphName] = nx.convert_to_directed(ref[index1])
         ref.append(locals()[graphName])
@@ -175,18 +182,19 @@ def directedCopy():
 
 def subgraph():
     global graphList, numberOfGraphs, ref
+    print("CREATE SUBNETWORK\n")
     if numberOfGraphs < 1:
         print("A network doesn't exist. Please create one.")
     else:
         print(graphList)
-        first = input("Which network do you want to make a subnetwork? \n")
+        first = input("Which network do you want to make a subnetwork? ")
         index1 = graphList.index(first)
-        graphName = input("What name will the subnetwork have?")
+        graphName = input("What name will the subnetwork have? ")
         numberOfGraphs += 1
         while graphName in graphList:
-            graphName = input("A network with that name already exists. Please choose another one.\n")
+            graphName = input("A network with that name already exists. Please choose another one. ")
         # ask the user for the name of the file to use to create the graph
-        fileName = input("File name to export list to use: \n")
+        fileName = input("File name to export list to use: ")
         # now its looking for the file
         file = open(fileName, 'r')
         lst = []
@@ -196,7 +204,7 @@ def subgraph():
                  line = line.strip()
                  person = line.split(',')
                  lst.append(person)
-                 locals()[graphName].add_node(person[0], age=person[1], gender=person[2], grade=person[3], vaccinated=person[4], infected=person[5])
+#                 locals()[graphName].add_node(person[0], age=person[1], gender=person[2], grade=person[3], vaccinated=person[4], infected=person[5])
         file.close()
         locals()[graphName] = ref[index1].subgraph(lst)
         ref.append(locals()[graphName])
