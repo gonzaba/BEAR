@@ -1,6 +1,5 @@
 import networkx as nx
 
-
 numberOfGraphs = 0
 
 #List of graphs. NOTE this is only the names of it. NOT the reference to the graph
@@ -78,6 +77,7 @@ def displayGraph():
     i = graphList.index(graphName)
     print(ref[i].nodes(data=True))
 
+
 def union():
     global graphList, numberOfGraphs, ref
     index1 =0
@@ -102,7 +102,76 @@ def union():
         graphList.append(graphName)
 
 
+def disjointUnion():
+    global graphList, numberOfGraphs, ref
+    index1 =0
+    index2 =0
+    if numberOfGraphs < 2:
+        print("There is only one graph. Please create another graph.")
+    else:
+        print(graphList)
+        first = input("Which is the first graph? \n")
+        index1 = graphList.index(first)
+        second = input("Which is the second graph? \n")
+        index2 = graphList.index(second)
 
+        graphName = input("What name will the disjoint_union of graphs be?")
+
+        numberOfGraphs += 1
+        while graphName in graphList:
+            graphName = input("A graph with that name already exists. Please choose another one.\n")
+
+        locals()[graphName] = nx.disjoint_union(ref[index1],ref[index2])
+        ref.append(locals()[graphName])
+        graphList.append(graphName)
+
+
+#convert_to_undirected
+#returns  A deepcopy of the graph.
+def undirectedCopy():
+    global graphList, numberOfGraphs, ref
+    index1 = 0
+    if numberOfGraphs < 1:
+        print("A graph doesn't exist. Please create one.")
+    else:
+        print(graphList)
+        first = input("Which graph do you want to convert to undirected? \n")
+        index1 = graphList.index(first)
+
+        graphName = input("What name will the deepcopy have?")
+
+        numberOfGraphs += 1
+        while graphName in graphList:
+            graphName = input("A graph with that name already exists. Please choose another one.\n")
+
+        locals()[graphName] = nx.convert_to_undirected(ref[index1])
+        ref.append(locals()[graphName])
+        graphList.append(graphName)
+
+
+#Convert_to_directed
+# Returns A directed graph with the same name, same nodes, and with each edge (u,v,data) replaced by two directed edges (u,v,data) and (v,u,data).
+def directedCopy():
+    global graphList, numberOfGraphs, ref
+    index1 = 0
+    if numberOfGraphs < 1:
+        print("A graph doesn't exist. Please create one.")
+    else:
+        print(graphList)
+        first = input("Which graph do you want to convert to undirected? \n")
+        index1 = graphList.index(first)
+
+        graphName = input("What name will the deepcopy have?")
+
+        numberOfGraphs += 1
+        while graphName in graphList:
+            graphName = input("A graph with that name already exists. Please choose another one.\n")
+
+        locals()[graphName] = nx.convert_to_directed(ref[index1])
+        ref.append(locals()[graphName])
+        graphList.append(graphName)
+
+#subgraph
 
 createGraph()
 createGraph()
