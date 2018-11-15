@@ -158,7 +158,7 @@ def directedCopy():
         print("A graph doesn't exist. Please create one.")
     else:
         print(graphList)
-        first = input("Which graph do you want to convert to undirected? \n")
+        first = input("Which graph do you want to convert to directed? \n")
         index1 = graphList.index(first)
 
         graphName = input("What name will the copy have?")
@@ -179,7 +179,7 @@ def subgraph():
         print("A graph doesn't exist. Please create one.")
     else:
         print(graphList)
-        first = input("Which graph do you want to convert to undirected? \n")
+        first = input("Which graph do you want to make a subgraph? \n")
         index1 = graphList.index(first)
         graphName = input("What name will the subgraph have?")
         numberOfGraphs += 1
@@ -197,7 +197,7 @@ def subgraph():
                  person = line.split(',')
                  lst.append(person)
         file.close()
-        locals()[graphName] = nx.subgraph(ref[index1],lst)
+        locals()[graphName] = ref[index1].subgraph(lst)
         ref.append(locals()[graphName])
         graphList.append(graphName)
 
@@ -209,6 +209,7 @@ displayGraph()
 union()
 viewListOfGraphs()
 displayGraph()
+subgraph()
 
 #Create new Graph
 #R =nx.Graph()
