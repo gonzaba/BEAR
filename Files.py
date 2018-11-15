@@ -16,11 +16,11 @@ def createGraph():
         #Add to the number of graphs one
         numberOfGraphs += 1
 
-        graphName = input("What is going to be the name of the graph? \n")
+        graphName = input("What is going to be the name of the network? \n")
 
         #While that name is already taken, keep asking the user to use another one
         while graphName in graphList:
-            graphName = input("A graph with that name already exists. Please choose another one.\n")
+            graphName = input("A network with that name already exists. Please choose another one.\n")
 
         #create a new graph with the name given by the user
         locals()[graphName]= nx.Graph()
@@ -57,11 +57,11 @@ def viewListOfGraphs():
    global graphList, numberOfGraphs
     #If this is true, then there are no graphs to display
    if numberOfGraphs ==0:
-       print("There are no graphs. Please create one.")
+       print("There are no networks. Please create one.")
    else:
        print("There are", end =" ")
        print(numberOfGraphs, end =" ")
-       print("graphs.")
+       print("networks.")
        print("They are", end =" ")
        print(graphList)
 
@@ -69,11 +69,11 @@ def viewListOfGraphs():
 def displayGraph():
     global graphList, numberOfGraphs, ref
     if numberOfGraphs == 0:
-        print("There are no graphs. Please create one.")
+        print("There are no networks. Please create one.")
     print(graphList)
-    graphName = input("Which graph do you want to display?\n")
+    graphName = input("Which network do you want to display?\n")
     while graphName not in graphList:
-        print("Graph does not exists. Please try again. \n")
+        print("Network does not exists. Please try again. \n")
     i = graphList.index(graphName)
     print(ref[i].nodes(data=True))
 
@@ -83,19 +83,19 @@ def union():
     index1 =0
     index2 =0
     if numberOfGraphs < 2:
-        print("There is only one graph. Please create another graph.")
+        print("There is only one network. Please create another network.")
     else:
         print(graphList)
-        first = input("Which is the first graph? \n")
+        first = input("Which is the first network? \n")
         index1 = graphList.index(first)
-        second = input("Which is the second graph? \n")
+        second = input("Which is the second network? \n")
         index2 = graphList.index(second)
 
-        graphName = input("What name will the union of graphs be?")
+        graphName = input("What name will the union of networks be?")
 
         numberOfGraphs += 1
         while graphName in graphList:
-            graphName = input("A graph with that name already exists. Please choose another one.\n")
+            graphName = input("A network with that name already exists. Please choose another one.\n")
 
         locals()[graphName] = nx.union(ref[index1],ref[index2])
         ref.append(locals()[graphName])
@@ -107,19 +107,19 @@ def disjointUnion():
     index1 =0
     index2 =0
     if numberOfGraphs < 2:
-        print("There is only one graph. Please create another graph.")
+        print("There is only one network. Please create another network.")
     else:
         print(graphList)
-        first = input("Which is the first graph? \n")
+        first = input("Which is the first network? \n")
         index1 = graphList.index(first)
-        second = input("Which is the second graph? \n")
+        second = input("Which is the second network? \n")
         index2 = graphList.index(second)
 
-        graphName = input("What name will the disjoint_union of graphs be?")
+        graphName = input("What name will the disjoint_union of networks be?")
 
         numberOfGraphs += 1
         while graphName in graphList:
-            graphName = input("A graph with that name already exists. Please choose another one.\n")
+            graphName = input("A network with that name already exists. Please choose another one.\n")
 
         locals()[graphName] = nx.disjoint_union(ref[index1],ref[index2])
         ref.append(locals()[graphName])
@@ -132,17 +132,17 @@ def undirectedCopy():
     global graphList, numberOfGraphs, ref
     index1 = 0
     if numberOfGraphs < 1:
-        print("A graph doesn't exist. Please create one.")
+        print("A network doesn't exist. Please create one.")
     else:
         print(graphList)
-        first = input("Which graph do you want to convert to undirected? \n")
+        first = input("Which network do you want to convert to undirected? \n")
         index1 = graphList.index(first)
 
         graphName = input("What name will the copy have?")
 
         numberOfGraphs += 1
         while graphName in graphList:
-            graphName = input("A graph with that name already exists. Please choose another one.\n")
+            graphName = input("A network with that name already exists. Please choose another one.\n")
 
         locals()[graphName] = nx.convert_to_undirected(ref[index1])
         ref.append(locals()[graphName])
@@ -155,17 +155,17 @@ def directedCopy():
     global graphList, numberOfGraphs, ref
     index1 = 0
     if numberOfGraphs < 1:
-        print("A graph doesn't exist. Please create one.")
+        print("A network doesn't exist. Please create one.")
     else:
         print(graphList)
-        first = input("Which graph do you want to convert to directed? \n")
+        first = input("Which network do you want to convert to directed? \n")
         index1 = graphList.index(first)
 
         graphName = input("What name will the copy have?")
 
         numberOfGraphs += 1
         while graphName in graphList:
-            graphName = input("A graph with that name already exists. Please choose another one.\n")
+            graphName = input("A network with that name already exists. Please choose another one.\n")
 
         locals()[graphName] = nx.convert_to_directed(ref[index1])
         ref.append(locals()[graphName])
@@ -176,15 +176,15 @@ def directedCopy():
 def subgraph():
     global graphList, numberOfGraphs, ref
     if numberOfGraphs < 1:
-        print("A graph doesn't exist. Please create one.")
+        print("A network doesn't exist. Please create one.")
     else:
         print(graphList)
-        first = input("Which graph do you want to make a subgraph? \n")
+        first = input("Which network do you want to make a subnetwork? \n")
         index1 = graphList.index(first)
-        graphName = input("What name will the subgraph have?")
+        graphName = input("What name will the subnetwork have?")
         numberOfGraphs += 1
         while graphName in graphList:
-            graphName = input("A graph with that name already exists. Please choose another one.\n")
+            graphName = input("A network with that name already exists. Please choose another one.\n")
         # ask the user for the name of the file to use to create the graph
         fileName = input("File name to export list to use: \n")
         # now its looking for the file
