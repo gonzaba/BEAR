@@ -5,8 +5,9 @@
 # -----------------------------------------------------------------------------
 
 import networkx as nx
-#import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 import ply.lex as lex
+import Files
 
 #lex part
 reserved = {
@@ -127,7 +128,7 @@ class Honey:
         self = nx.DiGraph()
         self.graph['name']=name
 
-    # method to add person
+    # methods for persons
     def addPerson(self,g,name,age,gender,grade,vax,infect):
         g.add_node(name)
         g.node[name]['name']=name

@@ -196,6 +196,7 @@ def subgraph():
                  line = line.strip()
                  person = line.split(',')
                  lst.append(person)
+                 locals()[graphName].add_node(person[0], age=person[1], gender=person[2], grade=person[3], vaccinated=person[4], infected=person[5])
         file.close()
         locals()[graphName] = ref[index1].subgraph(lst)
         ref.append(locals()[graphName])
