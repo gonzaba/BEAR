@@ -1,0 +1,169 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ELSE
+    FOR
+    IF
+
+Grammar
+
+Rule 0     S' -> test
+Rule 1     test -> BEAR LSLASHES function RSLASHES
+Rule 2     function -> DIGIT
+Rule 3     function -> CHARACTER
+Rule 4     function -> BINARY
+Rule 5     function -> DELIMITER
+Rule 6     function -> ID
+Rule 7     function -> LPAREN
+Rule 8     function -> RPAREN
+Rule 9     function -> LSLASHES
+Rule 10    function -> RSLASHES
+
+Terminals, with rules where they appear
+
+BEAR                 : 1
+BINARY               : 4
+CHARACTER            : 3
+DELIMITER            : 5
+DIGIT                : 2
+ELSE                 : 
+FOR                  : 
+ID                   : 6
+IF                   : 
+LPAREN               : 7
+LSLASHES             : 1 9
+RPAREN               : 8
+RSLASHES             : 1 10
+error                : 
+
+Nonterminals, with rules where they appear
+
+function             : 1
+test                 : 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . test
+    (1) test -> . BEAR LSLASHES function RSLASHES
+
+    BEAR            shift and go to state 2
+
+    test                           shift and go to state 1
+
+state 1
+
+    (0) S' -> test .
+
+
+
+state 2
+
+    (1) test -> BEAR . LSLASHES function RSLASHES
+
+    LSLASHES        shift and go to state 3
+
+
+state 3
+
+    (1) test -> BEAR LSLASHES . function RSLASHES
+    (2) function -> . DIGIT
+    (3) function -> . CHARACTER
+    (4) function -> . BINARY
+    (5) function -> . DELIMITER
+    (6) function -> . ID
+    (7) function -> . LPAREN
+    (8) function -> . RPAREN
+    (9) function -> . LSLASHES
+    (10) function -> . RSLASHES
+
+    DIGIT           shift and go to state 7
+    CHARACTER       shift and go to state 8
+    BINARY          shift and go to state 9
+    DELIMITER       shift and go to state 10
+    ID              shift and go to state 11
+    LPAREN          shift and go to state 12
+    RPAREN          shift and go to state 13
+    LSLASHES        shift and go to state 4
+    RSLASHES        shift and go to state 6
+
+    function                       shift and go to state 5
+
+state 4
+
+    (9) function -> LSLASHES .
+
+    RSLASHES        reduce using rule 9 (function -> LSLASHES .)
+
+
+state 5
+
+    (1) test -> BEAR LSLASHES function . RSLASHES
+
+    RSLASHES        shift and go to state 14
+
+
+state 6
+
+    (10) function -> RSLASHES .
+
+    RSLASHES        reduce using rule 10 (function -> RSLASHES .)
+
+
+state 7
+
+    (2) function -> DIGIT .
+
+    RSLASHES        reduce using rule 2 (function -> DIGIT .)
+
+
+state 8
+
+    (3) function -> CHARACTER .
+
+    RSLASHES        reduce using rule 3 (function -> CHARACTER .)
+
+
+state 9
+
+    (4) function -> BINARY .
+
+    RSLASHES        reduce using rule 4 (function -> BINARY .)
+
+
+state 10
+
+    (5) function -> DELIMITER .
+
+    RSLASHES        reduce using rule 5 (function -> DELIMITER .)
+
+
+state 11
+
+    (6) function -> ID .
+
+    RSLASHES        reduce using rule 6 (function -> ID .)
+
+
+state 12
+
+    (7) function -> LPAREN .
+
+    RSLASHES        reduce using rule 7 (function -> LPAREN .)
+
+
+state 13
+
+    (8) function -> RPAREN .
+
+    RSLASHES        reduce using rule 8 (function -> RPAREN .)
+
+
+state 14
+
+    (1) test -> BEAR LSLASHES function RSLASHES .
+
+    $end            reduce using rule 1 (test -> BEAR LSLASHES function RSLASHES .)
+
