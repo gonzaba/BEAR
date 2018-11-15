@@ -33,6 +33,7 @@ def createGraph():
 
         # ask the user for the name of the file to use to create the graph
         fileName = input("File Name to use: ")
+        fileName = fileName+".csv"
         # now its looking for the file
         file = open(fileName, 'r')
 
@@ -76,7 +77,7 @@ def displayGraph():
     print(graphList)
     graphName = input("Which network do you want to display? ")
     while graphName not in graphList:
-        print("Network does not exists. Please try again. ")
+        graphName = input("Network does not exists. Please try again. ")
     i = graphList.index(graphName)
     print(ref[i].nodes(data=True))
 
@@ -91,8 +92,12 @@ def union():
     else:
         print(graphList)
         first = input("Which is the first network? ")
+        while first not in graphList:
+            first = input("Network does not exists. Please try again. ")
         index1 = graphList.index(first)
         second = input("Which is the second network? ")
+        while second not in graphList:
+            second = input("Network does not exists. Please try again. ")
         index2 = graphList.index(second)
 
         graphName = input("What name will the union of networks be? ")
@@ -116,8 +121,12 @@ def disjointUnion():
     else:
         print(graphList)
         first = input("Which is the first network? ")
+        while first not in graphList:
+            first = input("Network does not exists. Please try again. ")
         index1 = graphList.index(first)
         second = input("Which is the second network? ")
+        while second not in graphList:
+            second = input("Network does not exists. Please try again. ")
         index2 = graphList.index(second)
 
         graphName = input("What name will the disjoint_union of networks be? ")
@@ -142,6 +151,8 @@ def undirectedCopy():
     else:
         print(graphList)
         first = input("Which network do you want to convert to undirected? ")
+        while first not in graphList:
+            first = input("Network does not exists. Please try again. ")
         index1 = graphList.index(first)
 
         graphName = input("What name will the copy have? ")
@@ -166,6 +177,8 @@ def directedCopy():
     else:
         print(graphList)
         first = input("Which network do you want to convert to directed? ")
+        while first not in graphList:
+            first = input("Network does not exists. Please try again. ")
         index1 = graphList.index(first)
 
         graphName = input("What name will the copy have? ")
@@ -188,6 +201,8 @@ def subgraph():
     else:
         print(graphList)
         first = input("Which network do you want to make a subnetwork? ")
+        while first not in graphList:
+            first = input("Network does not exists. Please try again. ")
         index1 = graphList.index(first)
         graphName = input("What name will the subnetwork have? ")
         numberOfGraphs += 1
@@ -195,6 +210,7 @@ def subgraph():
             graphName = input("A network with that name already exists. Please choose another one. ")
         # ask the user for the name of the file to use to create the graph
         fileName = input("File name to export list to use: ")
+        fileName = fileName+".csv"
         # now its looking for the file
         file = open(fileName, 'r')
         lst = []
