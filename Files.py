@@ -138,7 +138,7 @@ def undirectedCopy():
         first = input("Which graph do you want to convert to undirected? \n")
         index1 = graphList.index(first)
 
-        graphName = input("What name will the deepcopy have?")
+        graphName = input("What name will the copy have?")
 
         numberOfGraphs += 1
         while graphName in graphList:
@@ -161,7 +161,7 @@ def directedCopy():
         first = input("Which graph do you want to convert to undirected? \n")
         index1 = graphList.index(first)
 
-        graphName = input("What name will the deepcopy have?")
+        graphName = input("What name will the copy have?")
 
         numberOfGraphs += 1
         while graphName in graphList:
@@ -171,8 +171,38 @@ def directedCopy():
         ref.append(locals()[graphName])
         graphList.append(graphName)
 
-#subgraph
 
+
+def subgraph():
+    global graphList, numberOfGraphs, ref
+    if numberOfGraphs < 1:
+        print("A graph doesn't exist. Please create one.")
+    else:
+        print(graphList)
+        first = input("Which graph do you want to convert to undirected? \n")
+        index1 = graphList.index(first)
+        graphName = input("What name will the subgraph have?")
+        numberOfGraphs += 1
+        while graphName in graphList:
+            graphName = input("A graph with that name already exists. Please choose another one.\n")
+        # ask the user for the name of the file to use to create the graph
+        fileName = input("File name to export list to use: \n")
+        # now its looking for the file
+        file = open(fileName, 'r')
+        lst = []
+        # Read each individual line and create the person
+        for line in file:
+             if line != '\n':
+                 line = line.strip()
+                 person = line.split(',')
+                 lst.append(person)
+        file.close()
+        locals()[graphName] = nx.subgraph(ref[index1],lst)
+        ref.append(locals()[graphName])
+        graphList.append(graphName)
+
+
+#testers
 createGraph()
 createGraph()
 displayGraph()
