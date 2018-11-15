@@ -16,7 +16,7 @@ def createGraph():
         #Add to the number of graphs one
         numberOfGraphs += 1
 
-        print("CREATE NEW NETWORK\n")
+        print("CREATE NEW NETWORK")
         graphName = input("What is going to be the name of the network? ")
 
         #While that name is already taken, keep asking the user to use another one
@@ -56,7 +56,7 @@ def createGraph():
 #View the list graphs that currently exists.
 def viewListOfGraphs():
    global graphList, numberOfGraphs
-   print("LIST OF NETWORKS\n")
+   print("LIST OF NETWORKS")
     #If this is true, then there are no graphs to display
    if numberOfGraphs ==0:
        print("There are no networks. Please create one.")
@@ -70,7 +70,7 @@ def viewListOfGraphs():
 
 def displayGraph():
     global graphList, numberOfGraphs, ref
-    print("DISPLAY A NETWORK\n")
+    print("DISPLAY A NETWORK")
     if numberOfGraphs == 0:
         print("There are no networks. Please create one.")
     print(graphList)
@@ -83,7 +83,7 @@ def displayGraph():
 
 def union():
     global graphList, numberOfGraphs, ref
-    print("UNION OF NETWORKS\n")
+    print("UNION OF NETWORKS")
     index1 =0
     index2 =0
     if numberOfGraphs < 2:
@@ -108,7 +108,7 @@ def union():
 
 def disjointUnion():
     global graphList, numberOfGraphs, ref
-    print("DISJOINT UNION OF NETWORKS\n")
+    print("DISJOINT UNION OF NETWORKS")
     index1 =0
     index2 =0
     if numberOfGraphs < 2:
@@ -135,7 +135,7 @@ def disjointUnion():
 #returns  A deepcopy of the graph.
 def undirectedCopy():
     global graphList, numberOfGraphs, ref
-    print("UNDIRECTED COPY\n")
+    print("UNDIRECTED COPY")
     index1 = 0
     if numberOfGraphs < 1:
         print("A network doesn't exist. Please create one.")
@@ -159,7 +159,7 @@ def undirectedCopy():
 # Returns A directed graph with the same name, same nodes, and with each edge (u,v,data) replaced by two directed edges (u,v,data) and (v,u,data).
 def directedCopy():
     global graphList, numberOfGraphs, ref
-    print("DIRECTED COPY\n")
+    print("DIRECTED COPY")
     index1 = 0
     if numberOfGraphs < 1:
         print("A network doesn't exist. Please create one.")
@@ -182,7 +182,7 @@ def directedCopy():
 
 def subgraph():
     global graphList, numberOfGraphs, ref
-    print("CREATE SUBNETWORK\n")
+    print("CREATE SUBNETWORK")
     if numberOfGraphs < 1:
         print("A network doesn't exist. Please create one.")
     else:
@@ -198,12 +198,14 @@ def subgraph():
         # now its looking for the file
         file = open(fileName, 'r')
         lst = []
+        g = nx.Graph()
         # Read each individual line and create the person
         for line in file:
              if line != '\n':
                  line = line.strip()
                  person = line.split(',')
-                 lst.append(person)
+                 personNode = g.add_node(person[0], age=person[1], gender=person[2], grade=person[3], vaccinated=person[4], infected=person[5])
+                 lst.append(personNode)
         file.close()
         locals()[graphName] = ref[index1].subgraph(lst)
         ref.append(locals()[graphName])
@@ -218,6 +220,9 @@ union()
 viewListOfGraphs()
 displayGraph()
 subgraph()
+viewListOfGraphs()
+displayGraph()
+
 
 #Create new Graph
 #R =nx.Graph()
