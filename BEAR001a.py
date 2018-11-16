@@ -5,9 +5,10 @@
 # -----------------------------------------------------------------------------
 
 import networkx as nx
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import ply.lex as lex
-import Files
+import ply.yacc as yacc
+#import Files
 
 #lex part
 reserved = {
@@ -15,8 +16,12 @@ reserved = {
     '\\\\' : 'RSLASHES',
     'Bear' : 'BEAR',
     'if' : 'IF',
+    'in' : 'IN',
     'else': 'ELSE',
-    'for' : 'FOR'
+    'for' : 'FOR',
+    'from' : 'FROM',
+    'while' : 'WHILE',
+    'display' : 'DISPLAY'
 }
 tokens = [
     'DIGIT',
@@ -24,7 +29,14 @@ tokens = [
     'ID',
     'LPAREN',
     'RPAREN',
-    'DELIMITER',
+    'LDELIMITER',
+    'RDELIMITER',
+    'COMMA',
+    'SEPARATOR',
+    'DOT',
+    'PLUS',
+    'MINUS',
+    'BINOP',
     'BINARY'
 
 ] + (list(reserved.values()))
@@ -40,8 +52,15 @@ t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_LSLASHES = r'//'
 t_RSLASHES = r'\\\\'
-t_BINARY = r'\||&&'
-t_DELIMITER = r'\['
+t_BINARY = r'[\|\|&&]'
+t_COMMA = r'\,'
+t_BINOP = r'>='
+t_DOT = r'\.'
+t_PLUS = r'\+'
+t_MINUS = r'\-'
+t_SEPARATOR = r'\;'
+t_LDELIMITER = r'\['
+t_RDELIMITER = r'\]'
 
 def t_newline(t):
     r'\n+'
@@ -54,43 +73,68 @@ def t_error(t):
 lexer = lex.lex()
 # yacc part
 # Parser
-import ply.yacc as yacc
-# THIS PART IS HIGHLY WIP FOR NOW. IT'S UNRELIABLE! ~Enrique
-#def p_add(p):
- #   '''node + [ file , node ] '''
-#def p_define(p):
- #   '''  'BEAR' ~ function '''
+#underlying parser rules come before anything else, since they establish what the following rules will follow.
+#Hierarchy goes top to bottom. ~Enrique
 
 precedence = (
     ('left', 'LSLASHES', 'RSLASHES'),
     ('left', 'LPAREN', 'RPAREN')
 )
 
-def p_test(p):
-    'test : BEAR LSLASHES function RSLASHES'
+def p_define(p):
+    'test : BEAR function'
     #= ^p[0]   ^p[1]
     #treat p as if it were a list; each separate word is a cell in the list.
-    p[0]= p[3]
+    p[0]= p[2]
 
-
-#underlying parser rules come before anything else, since they establish what the following rules will follow.
-#Hierarchy goes top to bottom. ~Enrique
 def p_function(p):
-    '''function : DIGIT
-               | CHARACTER
-               | BINARY
-               | DELIMITER
-               | ID
-               | LPAREN
-               | RPAREN
-               | LSLASHES
-               | RSLASHES '''
-    p[0]= p[1]
+    '''function : term
+               | IF function COMMA function SEPARATOR ELSE function
+               | FOR LSLASHES term IN function RSLASHES term
+               | WHILE LSLASHES term BINOP term RSLASHES term'''
+    p[0] = p[1]
+
+def p_add(p) :
+    '''add : graph PLUS LDELIMITER file COMMA node RDELIMITER
+            | graph PLUS node'''
+    p[0] = p[1]
+def p_create(p):
+    '''create : CREATE LSLASHES CHARACTER RSLASHES
+                | CREATE LSLASHES CHARACTER FROM file RSLASHES'''
+    p[0]=p[3]
+def p_remove(p) :
+    'remove : graph MINUS node'
+    p[0]= 'removed ', p[3]
+
+def p_display(p):
+    'display : DISPLAY graph'
+    p[0]=p[2]
+
+def p_graph(p):
+    'graph : CHARACTER'
+    p[0] = p[1]
+
+def p_file(p) :
+    'file : ID DOT CHARACTER'
+    p[0] = p[1],p[2],p[3]
+def p_node(p) :
+    'node : CHARACTER'
+    p[0] = p[1]
+
+def p_term(p) :
+    '''term : add
+            | remove
+            | display
+            | file
+            | graph
+            | create'''
+    p[0] = p[1]
 
 
 
-def p_error(p):
-    print('Syntax error in input!')
+
+
+
 
 
 
@@ -150,11 +194,6 @@ class Honey:
 # hola
 # HI
 
-filename=input("Welcome to BEAR! Please enter your code's filename to compile. (NOTE: file must be in .cub format): \n")
-if(not filename.__contains__('.cub')):
-    print("unsupported file format!")
-print(filename)
-
 parser = yacc.yacc()
 
 while True:
@@ -164,4 +203,5 @@ while True:
        break
    if not s: continue
    result = parser.parse(s)
-   print(result)
+   print('Success! Code supplied: ', s)
+   #print(result)
