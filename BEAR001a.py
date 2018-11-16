@@ -48,14 +48,17 @@ def t_CHARACTER(t) :
      if t.value in reserved:
          t.type = reserved[t.value]
      return t
-t_ID = r'[a-zA-Z0-9-_]+'
+def t_ID(t):
+    r'[a-zA-Z0-9-_]+'
+    if t.value in reserved:
+         t.type = reserved[t.value]
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_LSLASHES = r'//'
 t_RSLASHES = r'\\\\'
 t_BINARY = r'[\|\|&&]'
 t_COMMA = r'\,'
-t_BINOP = r'[>=|<|<=|>]'
+t_BINOP = r'[>=|<|<=|>|!=|==]'
 t_DOT = r'\.'
 t_PLUS = r'\+'
 t_MINUS = r'\-'
@@ -91,7 +94,7 @@ def p_define(p):
 def p_function(p):
     '''function : term
                | IF function COMMA function SEPARATOR ELSE function
-               | FOR LSLASHES term IN function RSLASHES term
+               | FOR LSLASHES term IN term RSLASHES function
                | WHILE LSLASHES term BINOP term RSLASHES term'''
     p[0] = p[1]
 
@@ -116,7 +119,7 @@ def p_graph(p):
     p[0] = p[1]
 
 def p_file(p) :
-    'file : CHARACTER DOT CHARACTER'
+    'file : ID DOT CHARACTER'
     p[0] = p[1],p[2],p[3]
 def p_node(p) :
     'node : CHARACTER'
