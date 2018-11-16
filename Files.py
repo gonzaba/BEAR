@@ -228,16 +228,7 @@ def subgraph():
         graphList.append(graphName)
 
 
-#testers
-createGraph()
-createGraph()
-displayGraph()
-union()
-viewListOfGraphs()
-displayGraph()
-subgraph()
-viewListOfGraphs()
-displayGraph()
+
 
 
 #Create new Graph
