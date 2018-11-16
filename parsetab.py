@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftLSLASHESRSLASHESleftLPARENRPARENBEAR BINARY CHARACTER DELIMITER DIGIT ELSE FOR ID IF LPAREN LSLASHES RPAREN RSLASHEStest : BEAR LSLASHES function RSLASHESfunction : DIGIT\n               | CHARACTER\n               | BINARY\n               | DELIMITER\n               | ID\n               | LPAREN\n               | RPAREN\n               | LSLASHES\n               | RSLASHES '
+_lr_signature = 'leftLSLASHESRSLASHESleftLPARENRPARENBEAR BINARY BINOP CHARACTER COMMA CREATE DIGIT DISPLAY DOT ELSE FOR FROM ID IF IN LDELIMITER LPAREN LSLASHES MINUS PLUS RDELIMITER RPAREN RSLASHES SEPARATOR WHILEtest : BEAR functionfunction : term\n               | IF function COMMA function SEPARATOR ELSE function\n               | FOR LSLASHES term IN function RSLASHES term\n               | WHILE LSLASHES term BINOP term RSLASHES termadd : graph PLUS LDELIMITER file COMMA node RDELIMITER\n            | graph PLUS nodecreate : CREATE LSLASHES CHARACTER RSLASHES\n                | CREATE LSLASHES CHARACTER FROM file RSLASHESremove : graph MINUS nodedisplay : DISPLAY graphgraph : CHARACTERfile : CHARACTER DOT CHARACTERnode : CHARACTERterm : add\n            | remove\n            | display\n            | file\n            | graph\n            | create'
     
-_lr_action_items = {'BEAR':([0,],[2,]),'$end':([1,14,],[0,-1,]),'LSLASHES':([2,3,],[3,4,]),'DIGIT':([3,],[7,]),'CHARACTER':([3,],[8,]),'BINARY':([3,],[9,]),'DELIMITER':([3,],[10,]),'ID':([3,],[11,]),'LPAREN':([3,],[12,]),'RPAREN':([3,],[13,]),'RSLASHES':([3,4,5,6,7,8,9,10,11,12,13,],[6,-9,14,-10,-2,-3,-4,-5,-6,-7,-8,]),}
+_lr_action_items = {'BEAR':([0,],[2,]),'$end':([1,3,4,8,9,10,11,12,13,15,22,23,30,31,32,33,40,51,52,53,54,55,],[0,-1,-2,-15,-16,-17,-18,-19,-20,-12,-11,-12,-7,-14,-10,-13,-8,-9,-3,-4,-5,-6,]),'IF':([2,5,26,36,47,],[5,5,5,5,5,]),'FOR':([2,5,26,36,47,],[6,6,6,6,6,]),'WHILE':([2,5,26,36,47,],[7,7,7,7,7,]),'DISPLAY':([2,5,18,19,26,36,37,47,48,49,],[14,14,14,14,14,14,14,14,14,14,]),'CHARACTER':([2,5,14,18,19,20,21,24,25,26,29,36,37,41,45,47,48,49,],[15,15,23,15,15,31,31,33,34,15,39,15,15,39,31,15,15,15,]),'CREATE':([2,5,18,19,26,36,37,47,48,49,],[16,16,16,16,16,16,16,16,16,16,]),'COMMA':([4,8,9,10,11,12,13,15,17,22,23,30,31,32,33,38,40,51,52,53,54,55,],[-2,-15,-16,-17,-18,-19,-20,-12,26,-11,-12,-7,-14,-10,-13,45,-8,-9,-3,-4,-5,-6,]),'SEPARATOR':([4,8,9,10,11,12,13,15,22,23,30,31,32,33,35,40,51,52,53,54,55,],[-2,-15,-16,-17,-18,-19,-20,-12,-11,-12,-7,-14,-10,-13,42,-8,-9,-3,-4,-5,-6,]),'RSLASHES':([4,8,9,10,11,12,13,15,22,23,30,31,32,33,34,40,43,44,46,51,52,53,54,55,],[-2,-15,-16,-17,-18,-19,-20,-12,-11,-12,-7,-14,-10,-13,40,-8,48,49,51,-9,-3,-4,-5,-6,]),'LSLASHES':([6,7,16,],[18,19,25,]),'IN':([8,9,10,11,12,13,15,22,23,27,30,31,32,33,40,51,55,],[-15,-16,-17,-18,-19,-20,-12,-11,-12,36,-7,-14,-10,-13,-8,-9,-6,]),'BINOP':([8,9,10,11,12,13,15,22,23,28,30,31,32,33,40,51,55,],[-15,-16,-17,-18,-19,-20,-12,-11,-12,37,-7,-14,-10,-13,-8,-9,-6,]),'PLUS':([12,15,],[20,-12,]),'MINUS':([12,15,],[21,-12,]),'DOT':([15,39,],[24,24,]),'LDELIMITER':([20,],[29,]),'RDELIMITER':([31,50,],[-14,55,]),'FROM':([34,],[41,]),'ELSE':([42,],[47,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'test':([0,],[1,]),'function':([3,],[5,]),}
+_lr_goto_items = {'test':([0,],[1,]),'function':([2,5,26,36,47,],[3,17,35,43,52,]),'term':([2,5,18,19,26,36,37,47,48,49,],[4,4,27,28,4,4,44,4,53,54,]),'add':([2,5,18,19,26,36,37,47,48,49,],[8,8,8,8,8,8,8,8,8,8,]),'remove':([2,5,18,19,26,36,37,47,48,49,],[9,9,9,9,9,9,9,9,9,9,]),'display':([2,5,18,19,26,36,37,47,48,49,],[10,10,10,10,10,10,10,10,10,10,]),'file':([2,5,18,19,26,29,36,37,41,47,48,49,],[11,11,11,11,11,38,11,11,46,11,11,11,]),'graph':([2,5,14,18,19,26,36,37,47,48,49,],[12,12,22,12,12,12,12,12,12,12,12,]),'create':([2,5,18,19,26,36,37,47,48,49,],[13,13,13,13,13,13,13,13,13,13,]),'node':([20,21,45,],[30,32,50,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,14 +27,24 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> test","S'",1,None,None,None),
-  ('test -> BEAR LSLASHES function RSLASHES','test',4,'p_test','ply_testing.py',67),
-  ('function -> DIGIT','function',1,'p_function','ply_testing.py',76),
-  ('function -> CHARACTER','function',1,'p_function','ply_testing.py',77),
-  ('function -> BINARY','function',1,'p_function','ply_testing.py',78),
-  ('function -> DELIMITER','function',1,'p_function','ply_testing.py',79),
-  ('function -> ID','function',1,'p_function','ply_testing.py',80),
-  ('function -> LPAREN','function',1,'p_function','ply_testing.py',81),
-  ('function -> RPAREN','function',1,'p_function','ply_testing.py',82),
-  ('function -> LSLASHES','function',1,'p_function','ply_testing.py',83),
-  ('function -> RSLASHES','function',1,'p_function','ply_testing.py',84),
+  ('test -> BEAR function','test',2,'p_define','BEAR001a.py',86),
+  ('function -> term','function',1,'p_function','BEAR001a.py',92),
+  ('function -> IF function COMMA function SEPARATOR ELSE function','function',7,'p_function','BEAR001a.py',93),
+  ('function -> FOR LSLASHES term IN function RSLASHES term','function',7,'p_function','BEAR001a.py',94),
+  ('function -> WHILE LSLASHES term BINOP term RSLASHES term','function',7,'p_function','BEAR001a.py',95),
+  ('add -> graph PLUS LDELIMITER file COMMA node RDELIMITER','add',7,'p_add','BEAR001a.py',99),
+  ('add -> graph PLUS node','add',3,'p_add','BEAR001a.py',100),
+  ('create -> CREATE LSLASHES CHARACTER RSLASHES','create',4,'p_create','BEAR001a.py',103),
+  ('create -> CREATE LSLASHES CHARACTER FROM file RSLASHES','create',6,'p_create','BEAR001a.py',104),
+  ('remove -> graph MINUS node','remove',3,'p_remove','BEAR001a.py',107),
+  ('display -> DISPLAY graph','display',2,'p_display','BEAR001a.py',111),
+  ('graph -> CHARACTER','graph',1,'p_graph','BEAR001a.py',115),
+  ('file -> CHARACTER DOT CHARACTER','file',3,'p_file','BEAR001a.py',119),
+  ('node -> CHARACTER','node',1,'p_node','BEAR001a.py',122),
+  ('term -> add','term',1,'p_term','BEAR001a.py',126),
+  ('term -> remove','term',1,'p_term','BEAR001a.py',127),
+  ('term -> display','term',1,'p_term','BEAR001a.py',128),
+  ('term -> file','term',1,'p_term','BEAR001a.py',129),
+  ('term -> graph','term',1,'p_term','BEAR001a.py',130),
+  ('term -> create','term',1,'p_term','BEAR001a.py',131),
 ]

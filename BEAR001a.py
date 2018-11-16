@@ -55,7 +55,7 @@ t_LSLASHES = r'//'
 t_RSLASHES = r'\\\\'
 t_BINARY = r'[\|\|&&]'
 t_COMMA = r'\,'
-t_BINOP = r'>='
+t_BINOP = r'[>=|<|<=|>]'
 t_DOT = r'\.'
 t_PLUS = r'\+'
 t_MINUS = r'\-'
@@ -186,9 +186,6 @@ class Honey:
         g[p1][p2][att]=val
 
 #TODO: Add auxiliary operations!
-# hola
-# HI
-
 parser = yacc.yacc()
 
 while True:
@@ -198,5 +195,6 @@ while True:
        break
    if not s: continue
    result = parser.parse(s)
-   print('Success! Code supplied: ', s)
+   if(result):
+       print('Success! Code supplied: ', s)
    #print(result)
