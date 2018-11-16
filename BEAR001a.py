@@ -189,7 +189,7 @@ class Honey:
 parser = yacc.yacc()
 option= input('Test file interaction?(Y/N)')
 if(option=='Y'):
-    import fileTesting
+    import fileTester
 while True:
    try:
        s = input('BEAR> ')
