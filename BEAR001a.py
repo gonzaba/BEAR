@@ -21,7 +21,8 @@ reserved = {
     'for' : 'FOR',
     'from' : 'FROM',
     'while' : 'WHILE',
-    'display' : 'DISPLAY'
+    'display' : 'DISPLAY',
+    'create' : 'CREATE'
 }
 tokens = [
     'DIGIT',
@@ -115,7 +116,7 @@ def p_graph(p):
     p[0] = p[1]
 
 def p_file(p) :
-    'file : ID DOT CHARACTER'
+    'file : CHARACTER DOT CHARACTER'
     p[0] = p[1],p[2],p[3]
 def p_node(p) :
     'node : CHARACTER'
@@ -130,14 +131,8 @@ def p_term(p) :
             | create'''
     p[0] = p[1]
 
-
-
-
-
-
-
-
-
+def p_error(p):
+    print("Syntax error in provided code! ", s)
 
 
 """
