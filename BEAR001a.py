@@ -187,10 +187,12 @@ class Honey:
 
 #TODO: Add auxiliary operations!
 parser = yacc.yacc()
-
+option= input('Test file interaction?(Y/N)')
+if(option=='Y'):
+    import fileTesting
 while True:
    try:
-       s = input('>> ')
+       s = input('BEAR> ')
    except EOFError:
        break
    if not s: continue
