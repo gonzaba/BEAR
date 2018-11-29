@@ -8,7 +8,7 @@ import networkx as nx
 #import matplotlib.pyplot as plt
 import ply.lex as lex
 import ply.yacc as yacc
-#import Files
+import Files as f
 
 #lex part
 reserved = {
@@ -48,17 +48,14 @@ def t_CHARACTER(t) :
      if t.value in reserved:
          t.type = reserved[t.value]
      return t
-def t_ID(t):
-    r'[a-zA-Z0-9-_]+'
-    if t.value in reserved:
-         t.type = reserved[t.value]
+t_ID = r'[a-zA-Z0-9-_]+'
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
 t_LSLASHES = r'//'
 t_RSLASHES = r'\\\\'
 t_BINARY = r'[\|\|&&]'
 t_COMMA = r'\,'
-t_BINOP = r'[>=|<|<=|>|!=|==]'
+t_BINOP = r'>='
 t_DOT = r'\.'
 t_PLUS = r'\+'
 t_MINUS = r'\-'
@@ -94,7 +91,7 @@ def p_define(p):
 def p_function(p):
     '''function : term
                | IF function COMMA function SEPARATOR ELSE function
-               | FOR LSLASHES term IN term RSLASHES function
+               | FOR LSLASHES term IN function RSLASHES term
                | WHILE LSLASHES term BINOP term RSLASHES term'''
     p[0] = p[1]
 
@@ -105,21 +102,21 @@ def p_add(p) :
 def p_create(p):
     '''create : CREATE LSLASHES CHARACTER RSLASHES
                 | CREATE LSLASHES CHARACTER FROM file RSLASHES'''
-    p[0]=p[3]
+    p[0]= f.createGraph()
 def p_remove(p) :
     'remove : graph MINUS node'
-    p[0]= 'removed ', p[3]
+    p[0] = p[1]
 
 def p_display(p):
     'display : DISPLAY graph'
-    p[0]=p[2]
+    p[0]= f.displayGraph()
 
 def p_graph(p):
     'graph : CHARACTER'
     p[0] = p[1]
 
 def p_file(p) :
-    'file : ID DOT CHARACTER'
+    'file : CHARACTER DOT CHARACTER'
     p[0] = p[1],p[2],p[3]
 def p_node(p) :
     'node : CHARACTER'
@@ -189,10 +186,13 @@ class Honey:
         g[p1][p2][att]=val
 
 #TODO: Add auxiliary operations!
+# hola
+# HI
+
 parser = yacc.yacc()
 option= input('Test file interaction?(Y/N)')
 if(option=='Y'):
-    import fileTester
+    import fileTesting
 while True:
    try:
        s = input('BEAR> ')
@@ -201,5 +201,5 @@ while True:
    if not s: continue
    result = parser.parse(s)
    if(result):
-       print('Success! Code supplied: ', s)
+    print('Success! Code supplied: ', s)
    #print(result)
