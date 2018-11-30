@@ -8,7 +8,7 @@ import networkx as nx
 #import matplotlib.pyplot as plt
 import ply.lex as lex
 import ply.yacc as yacc
-import Files as f
+import HONEY as f
 
 #lex part
 reserved = {
@@ -93,6 +93,7 @@ def p_function(p):
                | IF function COMMA function SEPARATOR ELSE function
                | FOR LSLASHES term IN function RSLASHES term
                | WHILE LSLASHES term BINOP term RSLASHES term'''
+    #if(length(p)==)
     p[0] = p[1]
 
 def p_add(p) :
@@ -146,6 +147,3 @@ while True:
        break
    if not s: continue
    result = parser.parse(s)
-   if(result):
-    print('Success! Code supplied: ', s)
-   #print(result)

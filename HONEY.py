@@ -33,7 +33,7 @@ def createGraph():
 
         # ask the user for the name of the file to use to create the graph
         fileName = input("File Name to use: ")
-        fileName = fileName+".csv"
+        fileName = fileName
         # now its looking for the file
         file = open(fileName, 'r')
 
@@ -57,6 +57,8 @@ def createGraph():
 #def createGraph(name):
 #def createGraph(name, file):
 #def remove(node, graph):
+#def getGraph(name):
+#def getNode(name):
 #View the list graphs that currently exists.
 def viewListOfGraphs():
    global graphList, numberOfGraphs
