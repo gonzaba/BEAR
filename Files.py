@@ -54,6 +54,8 @@ def createGraph():
                 #print(locals()[graphName].nodes(data=True))
         file.close()
 
+#def createGraph(name):
+#def createGraph(name, file):
 #View the list graphs that currently exists.
 def viewListOfGraphs():
    global graphList, numberOfGraphs
