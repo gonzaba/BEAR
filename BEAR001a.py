@@ -109,7 +109,7 @@ def p_remove(p) :
 
 def p_display(p):
     'display : DISPLAY graph'
-    p[0]= f.displayGraph()
+    p[0]=f.displayGraph()
 
 def p_graph(p):
     'graph : CHARACTER'
