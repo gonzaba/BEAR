@@ -8,7 +8,7 @@ import networkx as nx
 #import matplotlib.pyplot as plt
 import ply.lex as lex
 import ply.yacc as yacc
-#import Files
+import Files as f
 
 #lex part
 reserved = {
@@ -105,14 +105,14 @@ def p_add(p) :
 def p_create(p):
     '''create : CREATE LSLASHES CHARACTER RSLASHES
                 | CREATE LSLASHES CHARACTER FROM file RSLASHES'''
-    p[0]=p[3]
+    p[0]= f.createGraph()
 def p_remove(p) :
     'remove : graph MINUS node'
     p[0]= 'removed ', p[3]
 
 def p_display(p):
     'display : DISPLAY graph'
-    p[0]=p[2]
+    p[0]=f.displayGraph()
 
 def p_graph(p):
     'graph : CHARACTER'
