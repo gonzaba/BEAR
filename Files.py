@@ -56,6 +56,7 @@ def createGraph():
 
 #def createGraph(name):
 #def createGraph(name, file):
+#def remove(node, graph):
 #View the list graphs that currently exists.
 def viewListOfGraphs():
    global graphList, numberOfGraphs
