@@ -135,60 +135,6 @@ def p_error(p):
     print("Syntax error in provided code! ", s)
 
 
-"""
-HONEY class for auxiliary functions
-User must input data as specified in order to comply with data types
-newNetwork
-    name is a string
-addPerson
-    g is a graph
-    name, gender are string
-    age, grade are int
-    vax, infect are bool
-editPerson
-    g is a graph
-    p is a node
-    att is a string
-    val is a free type value
-    ######SHOULD VERIFY VALID ATTRIBUTE######
-addConnection
-    g is a graph
-    p1, p2 are node
-addLink
-    g is a graph
-    p1, p2 are node
-    att is a string
-    val is a free type value
-"""
-
-class Honey:
-    # adding a new network
-    def newNetwork(self,name):
-        self = nx.DiGraph()
-        self.graph['name']=name
-
-    # methods for persons
-    def addPerson(self,g,name,age,gender,grade,vax,infect):
-        g.add_node(name)
-        g.node[name]['name']=name
-        g.node[name]['age']=age
-        g.node[name]['gender']=gender
-        g.node[name]['grade']=grade
-        g.node[name]['vaccinated']=vax
-        g.node[name]['infected']=infect
-    def editPerson(self,g,p,att,val):
-        g.node[p][att]=val
-
-    # methods for connections
-    def addConnection(self,g,p1,p2):
-        g.add_edge(p1,p2)
-    def addLink(self,g,p1,p2,att,val):
-        g[p1][p2][att]=val
-
-#TODO: Add auxiliary operations!
-# hola
-# HI
-
 parser = yacc.yacc()
 option= input('Test file interaction?(Y/N)')
 if(option=='Y'):
