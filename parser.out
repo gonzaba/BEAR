@@ -20,29 +20,30 @@ Rule 6     add -> graph PLUS LDELIMITER file COMMA node RDELIMITER
 Rule 7     add -> graph PLUS node
 Rule 8     create -> CREATE LSLASHES CHARACTER RSLASHES
 Rule 9     create -> CREATE LSLASHES CHARACTER FROM file RSLASHES
-Rule 10    remove -> graph MINUS node
-Rule 11    display -> DISPLAY graph
-Rule 12    graph -> CHARACTER
-Rule 13    file -> CHARACTER DOT CHARACTER
-Rule 14    node -> CHARACTER
-Rule 15    term -> add
-Rule 16    term -> remove
-Rule 17    term -> display
-Rule 18    term -> file
-Rule 19    term -> graph
-Rule 20    term -> create
+Rule 10    create -> CREATE
+Rule 11    remove -> graph MINUS node
+Rule 12    display -> DISPLAY graph
+Rule 13    graph -> CHARACTER
+Rule 14    file -> CHARACTER DOT CHARACTER
+Rule 15    node -> CHARACTER
+Rule 16    term -> add
+Rule 17    term -> remove
+Rule 18    term -> display
+Rule 19    term -> file
+Rule 20    term -> graph
+Rule 21    term -> create
 
 Terminals, with rules where they appear
 
 BEAR                 : 1
 BINARY               : 
 BINOP                : 5
-CHARACTER            : 8 9 12 13 13 14
+CHARACTER            : 8 9 13 14 14 15
 COMMA                : 3 6
-CREATE               : 8 9
+CREATE               : 8 9 10
 DIGIT                : 
-DISPLAY              : 11
-DOT                  : 13
+DISPLAY              : 12
+DOT                  : 14
 ELSE                 : 3
 FOR                  : 4
 FROM                 : 9
@@ -52,7 +53,7 @@ IN                   : 4
 LDELIMITER           : 6
 LPAREN               : 
 LSLASHES             : 4 5 8 9
-MINUS                : 10
+MINUS                : 11
 PLUS                 : 6 7
 RDELIMITER           : 6
 RPAREN               : 
@@ -63,14 +64,14 @@ error                :
 
 Nonterminals, with rules where they appear
 
-add                  : 15
-create               : 20
-display              : 17
-file                 : 6 9 18
+add                  : 16
+create               : 21
+display              : 18
+file                 : 6 9 19
 function             : 1 3 3 3 4
-graph                : 6 7 10 11 19
-node                 : 6 7 10
-remove               : 16
+graph                : 6 7 11 12 20
+node                 : 6 7 11
+remove               : 17
 term                 : 2 4 4 5 5 5
 test                 : 0
 
@@ -98,20 +99,21 @@ state 2
     (3) function -> . IF function COMMA function SEPARATOR ELSE function
     (4) function -> . FOR LSLASHES term IN function RSLASHES term
     (5) function -> . WHILE LSLASHES term BINOP term RSLASHES term
-    (15) term -> . add
-    (16) term -> . remove
-    (17) term -> . display
-    (18) term -> . file
-    (19) term -> . graph
-    (20) term -> . create
+    (16) term -> . add
+    (17) term -> . remove
+    (18) term -> . display
+    (19) term -> . file
+    (20) term -> . graph
+    (21) term -> . create
     (6) add -> . graph PLUS LDELIMITER file COMMA node RDELIMITER
     (7) add -> . graph PLUS node
-    (10) remove -> . graph MINUS node
-    (11) display -> . DISPLAY graph
-    (13) file -> . CHARACTER DOT CHARACTER
-    (12) graph -> . CHARACTER
+    (11) remove -> . graph MINUS node
+    (12) display -> . DISPLAY graph
+    (14) file -> . CHARACTER DOT CHARACTER
+    (13) graph -> . CHARACTER
     (8) create -> . CREATE LSLASHES CHARACTER RSLASHES
     (9) create -> . CREATE LSLASHES CHARACTER FROM file RSLASHES
+    (10) create -> . CREATE
 
     IF              shift and go to state 5
     FOR             shift and go to state 6
@@ -153,20 +155,21 @@ state 5
     (3) function -> . IF function COMMA function SEPARATOR ELSE function
     (4) function -> . FOR LSLASHES term IN function RSLASHES term
     (5) function -> . WHILE LSLASHES term BINOP term RSLASHES term
-    (15) term -> . add
-    (16) term -> . remove
-    (17) term -> . display
-    (18) term -> . file
-    (19) term -> . graph
-    (20) term -> . create
+    (16) term -> . add
+    (17) term -> . remove
+    (18) term -> . display
+    (19) term -> . file
+    (20) term -> . graph
+    (21) term -> . create
     (6) add -> . graph PLUS LDELIMITER file COMMA node RDELIMITER
     (7) add -> . graph PLUS node
-    (10) remove -> . graph MINUS node
-    (11) display -> . DISPLAY graph
-    (13) file -> . CHARACTER DOT CHARACTER
-    (12) graph -> . CHARACTER
+    (11) remove -> . graph MINUS node
+    (12) display -> . DISPLAY graph
+    (14) file -> . CHARACTER DOT CHARACTER
+    (13) graph -> . CHARACTER
     (8) create -> . CREATE LSLASHES CHARACTER RSLASHES
     (9) create -> . CREATE LSLASHES CHARACTER FROM file RSLASHES
+    (10) create -> . CREATE
 
     IF              shift and go to state 5
     FOR             shift and go to state 6
@@ -200,85 +203,85 @@ state 7
 
 state 8
 
-    (15) term -> add .
+    (16) term -> add .
 
-    $end            reduce using rule 15 (term -> add .)
-    COMMA           reduce using rule 15 (term -> add .)
-    IN              reduce using rule 15 (term -> add .)
-    BINOP           reduce using rule 15 (term -> add .)
-    SEPARATOR       reduce using rule 15 (term -> add .)
-    RSLASHES        reduce using rule 15 (term -> add .)
+    $end            reduce using rule 16 (term -> add .)
+    COMMA           reduce using rule 16 (term -> add .)
+    IN              reduce using rule 16 (term -> add .)
+    BINOP           reduce using rule 16 (term -> add .)
+    SEPARATOR       reduce using rule 16 (term -> add .)
+    RSLASHES        reduce using rule 16 (term -> add .)
 
 
 state 9
 
-    (16) term -> remove .
+    (17) term -> remove .
 
-    $end            reduce using rule 16 (term -> remove .)
-    COMMA           reduce using rule 16 (term -> remove .)
-    IN              reduce using rule 16 (term -> remove .)
-    BINOP           reduce using rule 16 (term -> remove .)
-    SEPARATOR       reduce using rule 16 (term -> remove .)
-    RSLASHES        reduce using rule 16 (term -> remove .)
+    $end            reduce using rule 17 (term -> remove .)
+    COMMA           reduce using rule 17 (term -> remove .)
+    IN              reduce using rule 17 (term -> remove .)
+    BINOP           reduce using rule 17 (term -> remove .)
+    SEPARATOR       reduce using rule 17 (term -> remove .)
+    RSLASHES        reduce using rule 17 (term -> remove .)
 
 
 state 10
 
-    (17) term -> display .
+    (18) term -> display .
 
-    $end            reduce using rule 17 (term -> display .)
-    COMMA           reduce using rule 17 (term -> display .)
-    IN              reduce using rule 17 (term -> display .)
-    BINOP           reduce using rule 17 (term -> display .)
-    SEPARATOR       reduce using rule 17 (term -> display .)
-    RSLASHES        reduce using rule 17 (term -> display .)
+    $end            reduce using rule 18 (term -> display .)
+    COMMA           reduce using rule 18 (term -> display .)
+    IN              reduce using rule 18 (term -> display .)
+    BINOP           reduce using rule 18 (term -> display .)
+    SEPARATOR       reduce using rule 18 (term -> display .)
+    RSLASHES        reduce using rule 18 (term -> display .)
 
 
 state 11
 
-    (18) term -> file .
+    (19) term -> file .
 
-    $end            reduce using rule 18 (term -> file .)
-    COMMA           reduce using rule 18 (term -> file .)
-    IN              reduce using rule 18 (term -> file .)
-    BINOP           reduce using rule 18 (term -> file .)
-    SEPARATOR       reduce using rule 18 (term -> file .)
-    RSLASHES        reduce using rule 18 (term -> file .)
+    $end            reduce using rule 19 (term -> file .)
+    COMMA           reduce using rule 19 (term -> file .)
+    IN              reduce using rule 19 (term -> file .)
+    BINOP           reduce using rule 19 (term -> file .)
+    SEPARATOR       reduce using rule 19 (term -> file .)
+    RSLASHES        reduce using rule 19 (term -> file .)
 
 
 state 12
 
-    (19) term -> graph .
+    (20) term -> graph .
     (6) add -> graph . PLUS LDELIMITER file COMMA node RDELIMITER
     (7) add -> graph . PLUS node
-    (10) remove -> graph . MINUS node
+    (11) remove -> graph . MINUS node
 
-    $end            reduce using rule 19 (term -> graph .)
-    COMMA           reduce using rule 19 (term -> graph .)
-    IN              reduce using rule 19 (term -> graph .)
-    BINOP           reduce using rule 19 (term -> graph .)
-    SEPARATOR       reduce using rule 19 (term -> graph .)
-    RSLASHES        reduce using rule 19 (term -> graph .)
+    $end            reduce using rule 20 (term -> graph .)
+    COMMA           reduce using rule 20 (term -> graph .)
+    IN              reduce using rule 20 (term -> graph .)
+    BINOP           reduce using rule 20 (term -> graph .)
+    SEPARATOR       reduce using rule 20 (term -> graph .)
+    RSLASHES        reduce using rule 20 (term -> graph .)
     PLUS            shift and go to state 20
     MINUS           shift and go to state 21
 
 
 state 13
 
-    (20) term -> create .
+    (21) term -> create .
 
-    $end            reduce using rule 20 (term -> create .)
-    COMMA           reduce using rule 20 (term -> create .)
-    IN              reduce using rule 20 (term -> create .)
-    BINOP           reduce using rule 20 (term -> create .)
-    SEPARATOR       reduce using rule 20 (term -> create .)
-    RSLASHES        reduce using rule 20 (term -> create .)
+    $end            reduce using rule 21 (term -> create .)
+    COMMA           reduce using rule 21 (term -> create .)
+    IN              reduce using rule 21 (term -> create .)
+    BINOP           reduce using rule 21 (term -> create .)
+    SEPARATOR       reduce using rule 21 (term -> create .)
+    RSLASHES        reduce using rule 21 (term -> create .)
 
 
 state 14
 
-    (11) display -> DISPLAY . graph
-    (12) graph -> . CHARACTER
+    (12) display -> DISPLAY . graph
+    (13) graph -> . CHARACTER
 
     CHARACTER       shift and go to state 23
 
@@ -286,26 +289,33 @@ state 14
 
 state 15
 
-    (13) file -> CHARACTER . DOT CHARACTER
-    (12) graph -> CHARACTER .
+    (14) file -> CHARACTER . DOT CHARACTER
+    (13) graph -> CHARACTER .
 
     DOT             shift and go to state 24
-    PLUS            reduce using rule 12 (graph -> CHARACTER .)
-    MINUS           reduce using rule 12 (graph -> CHARACTER .)
-    $end            reduce using rule 12 (graph -> CHARACTER .)
-    COMMA           reduce using rule 12 (graph -> CHARACTER .)
-    IN              reduce using rule 12 (graph -> CHARACTER .)
-    BINOP           reduce using rule 12 (graph -> CHARACTER .)
-    SEPARATOR       reduce using rule 12 (graph -> CHARACTER .)
-    RSLASHES        reduce using rule 12 (graph -> CHARACTER .)
+    PLUS            reduce using rule 13 (graph -> CHARACTER .)
+    MINUS           reduce using rule 13 (graph -> CHARACTER .)
+    $end            reduce using rule 13 (graph -> CHARACTER .)
+    COMMA           reduce using rule 13 (graph -> CHARACTER .)
+    IN              reduce using rule 13 (graph -> CHARACTER .)
+    BINOP           reduce using rule 13 (graph -> CHARACTER .)
+    SEPARATOR       reduce using rule 13 (graph -> CHARACTER .)
+    RSLASHES        reduce using rule 13 (graph -> CHARACTER .)
 
 
 state 16
 
     (8) create -> CREATE . LSLASHES CHARACTER RSLASHES
     (9) create -> CREATE . LSLASHES CHARACTER FROM file RSLASHES
+    (10) create -> CREATE .
 
     LSLASHES        shift and go to state 25
+    $end            reduce using rule 10 (create -> CREATE .)
+    COMMA           reduce using rule 10 (create -> CREATE .)
+    IN              reduce using rule 10 (create -> CREATE .)
+    BINOP           reduce using rule 10 (create -> CREATE .)
+    SEPARATOR       reduce using rule 10 (create -> CREATE .)
+    RSLASHES        reduce using rule 10 (create -> CREATE .)
 
 
 state 17
@@ -318,20 +328,21 @@ state 17
 state 18
 
     (4) function -> FOR LSLASHES . term IN function RSLASHES term
-    (15) term -> . add
-    (16) term -> . remove
-    (17) term -> . display
-    (18) term -> . file
-    (19) term -> . graph
-    (20) term -> . create
+    (16) term -> . add
+    (17) term -> . remove
+    (18) term -> . display
+    (19) term -> . file
+    (20) term -> . graph
+    (21) term -> . create
     (6) add -> . graph PLUS LDELIMITER file COMMA node RDELIMITER
     (7) add -> . graph PLUS node
-    (10) remove -> . graph MINUS node
-    (11) display -> . DISPLAY graph
-    (13) file -> . CHARACTER DOT CHARACTER
-    (12) graph -> . CHARACTER
+    (11) remove -> . graph MINUS node
+    (12) display -> . DISPLAY graph
+    (14) file -> . CHARACTER DOT CHARACTER
+    (13) graph -> . CHARACTER
     (8) create -> . CREATE LSLASHES CHARACTER RSLASHES
     (9) create -> . CREATE LSLASHES CHARACTER FROM file RSLASHES
+    (10) create -> . CREATE
 
     DISPLAY         shift and go to state 14
     CHARACTER       shift and go to state 15
@@ -348,20 +359,21 @@ state 18
 state 19
 
     (5) function -> WHILE LSLASHES . term BINOP term RSLASHES term
-    (15) term -> . add
-    (16) term -> . remove
-    (17) term -> . display
-    (18) term -> . file
-    (19) term -> . graph
-    (20) term -> . create
+    (16) term -> . add
+    (17) term -> . remove
+    (18) term -> . display
+    (19) term -> . file
+    (20) term -> . graph
+    (21) term -> . create
     (6) add -> . graph PLUS LDELIMITER file COMMA node RDELIMITER
     (7) add -> . graph PLUS node
-    (10) remove -> . graph MINUS node
-    (11) display -> . DISPLAY graph
-    (13) file -> . CHARACTER DOT CHARACTER
-    (12) graph -> . CHARACTER
+    (11) remove -> . graph MINUS node
+    (12) display -> . DISPLAY graph
+    (14) file -> . CHARACTER DOT CHARACTER
+    (13) graph -> . CHARACTER
     (8) create -> . CREATE LSLASHES CHARACTER RSLASHES
     (9) create -> . CREATE LSLASHES CHARACTER FROM file RSLASHES
+    (10) create -> . CREATE
 
     DISPLAY         shift and go to state 14
     CHARACTER       shift and go to state 15
@@ -379,7 +391,7 @@ state 20
 
     (6) add -> graph PLUS . LDELIMITER file COMMA node RDELIMITER
     (7) add -> graph PLUS . node
-    (14) node -> . CHARACTER
+    (15) node -> . CHARACTER
 
     LDELIMITER      shift and go to state 29
     CHARACTER       shift and go to state 31
@@ -388,8 +400,8 @@ state 20
 
 state 21
 
-    (10) remove -> graph MINUS . node
-    (14) node -> . CHARACTER
+    (11) remove -> graph MINUS . node
+    (15) node -> . CHARACTER
 
     CHARACTER       shift and go to state 31
 
@@ -397,31 +409,31 @@ state 21
 
 state 22
 
-    (11) display -> DISPLAY graph .
+    (12) display -> DISPLAY graph .
 
-    $end            reduce using rule 11 (display -> DISPLAY graph .)
-    COMMA           reduce using rule 11 (display -> DISPLAY graph .)
-    IN              reduce using rule 11 (display -> DISPLAY graph .)
-    BINOP           reduce using rule 11 (display -> DISPLAY graph .)
-    SEPARATOR       reduce using rule 11 (display -> DISPLAY graph .)
-    RSLASHES        reduce using rule 11 (display -> DISPLAY graph .)
+    $end            reduce using rule 12 (display -> DISPLAY graph .)
+    COMMA           reduce using rule 12 (display -> DISPLAY graph .)
+    IN              reduce using rule 12 (display -> DISPLAY graph .)
+    BINOP           reduce using rule 12 (display -> DISPLAY graph .)
+    SEPARATOR       reduce using rule 12 (display -> DISPLAY graph .)
+    RSLASHES        reduce using rule 12 (display -> DISPLAY graph .)
 
 
 state 23
 
-    (12) graph -> CHARACTER .
+    (13) graph -> CHARACTER .
 
-    $end            reduce using rule 12 (graph -> CHARACTER .)
-    COMMA           reduce using rule 12 (graph -> CHARACTER .)
-    IN              reduce using rule 12 (graph -> CHARACTER .)
-    BINOP           reduce using rule 12 (graph -> CHARACTER .)
-    SEPARATOR       reduce using rule 12 (graph -> CHARACTER .)
-    RSLASHES        reduce using rule 12 (graph -> CHARACTER .)
+    $end            reduce using rule 13 (graph -> CHARACTER .)
+    COMMA           reduce using rule 13 (graph -> CHARACTER .)
+    IN              reduce using rule 13 (graph -> CHARACTER .)
+    BINOP           reduce using rule 13 (graph -> CHARACTER .)
+    SEPARATOR       reduce using rule 13 (graph -> CHARACTER .)
+    RSLASHES        reduce using rule 13 (graph -> CHARACTER .)
 
 
 state 24
 
-    (13) file -> CHARACTER DOT . CHARACTER
+    (14) file -> CHARACTER DOT . CHARACTER
 
     CHARACTER       shift and go to state 33
 
@@ -441,20 +453,21 @@ state 26
     (3) function -> . IF function COMMA function SEPARATOR ELSE function
     (4) function -> . FOR LSLASHES term IN function RSLASHES term
     (5) function -> . WHILE LSLASHES term BINOP term RSLASHES term
-    (15) term -> . add
-    (16) term -> . remove
-    (17) term -> . display
-    (18) term -> . file
-    (19) term -> . graph
-    (20) term -> . create
+    (16) term -> . add
+    (17) term -> . remove
+    (18) term -> . display
+    (19) term -> . file
+    (20) term -> . graph
+    (21) term -> . create
     (6) add -> . graph PLUS LDELIMITER file COMMA node RDELIMITER
     (7) add -> . graph PLUS node
-    (10) remove -> . graph MINUS node
-    (11) display -> . DISPLAY graph
-    (13) file -> . CHARACTER DOT CHARACTER
-    (12) graph -> . CHARACTER
+    (11) remove -> . graph MINUS node
+    (12) display -> . DISPLAY graph
+    (14) file -> . CHARACTER DOT CHARACTER
+    (13) graph -> . CHARACTER
     (8) create -> . CREATE LSLASHES CHARACTER RSLASHES
     (9) create -> . CREATE LSLASHES CHARACTER FROM file RSLASHES
+    (10) create -> . CREATE
 
     IF              shift and go to state 5
     FOR             shift and go to state 6
@@ -489,7 +502,7 @@ state 28
 state 29
 
     (6) add -> graph PLUS LDELIMITER . file COMMA node RDELIMITER
-    (13) file -> . CHARACTER DOT CHARACTER
+    (14) file -> . CHARACTER DOT CHARACTER
 
     CHARACTER       shift and go to state 39
 
@@ -509,39 +522,39 @@ state 30
 
 state 31
 
-    (14) node -> CHARACTER .
+    (15) node -> CHARACTER .
 
-    $end            reduce using rule 14 (node -> CHARACTER .)
-    COMMA           reduce using rule 14 (node -> CHARACTER .)
-    IN              reduce using rule 14 (node -> CHARACTER .)
-    BINOP           reduce using rule 14 (node -> CHARACTER .)
-    SEPARATOR       reduce using rule 14 (node -> CHARACTER .)
-    RSLASHES        reduce using rule 14 (node -> CHARACTER .)
-    RDELIMITER      reduce using rule 14 (node -> CHARACTER .)
+    $end            reduce using rule 15 (node -> CHARACTER .)
+    COMMA           reduce using rule 15 (node -> CHARACTER .)
+    IN              reduce using rule 15 (node -> CHARACTER .)
+    BINOP           reduce using rule 15 (node -> CHARACTER .)
+    SEPARATOR       reduce using rule 15 (node -> CHARACTER .)
+    RSLASHES        reduce using rule 15 (node -> CHARACTER .)
+    RDELIMITER      reduce using rule 15 (node -> CHARACTER .)
 
 
 state 32
 
-    (10) remove -> graph MINUS node .
+    (11) remove -> graph MINUS node .
 
-    $end            reduce using rule 10 (remove -> graph MINUS node .)
-    COMMA           reduce using rule 10 (remove -> graph MINUS node .)
-    IN              reduce using rule 10 (remove -> graph MINUS node .)
-    BINOP           reduce using rule 10 (remove -> graph MINUS node .)
-    SEPARATOR       reduce using rule 10 (remove -> graph MINUS node .)
-    RSLASHES        reduce using rule 10 (remove -> graph MINUS node .)
+    $end            reduce using rule 11 (remove -> graph MINUS node .)
+    COMMA           reduce using rule 11 (remove -> graph MINUS node .)
+    IN              reduce using rule 11 (remove -> graph MINUS node .)
+    BINOP           reduce using rule 11 (remove -> graph MINUS node .)
+    SEPARATOR       reduce using rule 11 (remove -> graph MINUS node .)
+    RSLASHES        reduce using rule 11 (remove -> graph MINUS node .)
 
 
 state 33
 
-    (13) file -> CHARACTER DOT CHARACTER .
+    (14) file -> CHARACTER DOT CHARACTER .
 
-    $end            reduce using rule 13 (file -> CHARACTER DOT CHARACTER .)
-    COMMA           reduce using rule 13 (file -> CHARACTER DOT CHARACTER .)
-    IN              reduce using rule 13 (file -> CHARACTER DOT CHARACTER .)
-    BINOP           reduce using rule 13 (file -> CHARACTER DOT CHARACTER .)
-    SEPARATOR       reduce using rule 13 (file -> CHARACTER DOT CHARACTER .)
-    RSLASHES        reduce using rule 13 (file -> CHARACTER DOT CHARACTER .)
+    $end            reduce using rule 14 (file -> CHARACTER DOT CHARACTER .)
+    COMMA           reduce using rule 14 (file -> CHARACTER DOT CHARACTER .)
+    IN              reduce using rule 14 (file -> CHARACTER DOT CHARACTER .)
+    BINOP           reduce using rule 14 (file -> CHARACTER DOT CHARACTER .)
+    SEPARATOR       reduce using rule 14 (file -> CHARACTER DOT CHARACTER .)
+    RSLASHES        reduce using rule 14 (file -> CHARACTER DOT CHARACTER .)
 
 
 state 34
@@ -567,20 +580,21 @@ state 36
     (3) function -> . IF function COMMA function SEPARATOR ELSE function
     (4) function -> . FOR LSLASHES term IN function RSLASHES term
     (5) function -> . WHILE LSLASHES term BINOP term RSLASHES term
-    (15) term -> . add
-    (16) term -> . remove
-    (17) term -> . display
-    (18) term -> . file
-    (19) term -> . graph
-    (20) term -> . create
+    (16) term -> . add
+    (17) term -> . remove
+    (18) term -> . display
+    (19) term -> . file
+    (20) term -> . graph
+    (21) term -> . create
     (6) add -> . graph PLUS LDELIMITER file COMMA node RDELIMITER
     (7) add -> . graph PLUS node
-    (10) remove -> . graph MINUS node
-    (11) display -> . DISPLAY graph
-    (13) file -> . CHARACTER DOT CHARACTER
-    (12) graph -> . CHARACTER
+    (11) remove -> . graph MINUS node
+    (12) display -> . DISPLAY graph
+    (14) file -> . CHARACTER DOT CHARACTER
+    (13) graph -> . CHARACTER
     (8) create -> . CREATE LSLASHES CHARACTER RSLASHES
     (9) create -> . CREATE LSLASHES CHARACTER FROM file RSLASHES
+    (10) create -> . CREATE
 
     IF              shift and go to state 5
     FOR             shift and go to state 6
@@ -601,20 +615,21 @@ state 36
 state 37
 
     (5) function -> WHILE LSLASHES term BINOP . term RSLASHES term
-    (15) term -> . add
-    (16) term -> . remove
-    (17) term -> . display
-    (18) term -> . file
-    (19) term -> . graph
-    (20) term -> . create
+    (16) term -> . add
+    (17) term -> . remove
+    (18) term -> . display
+    (19) term -> . file
+    (20) term -> . graph
+    (21) term -> . create
     (6) add -> . graph PLUS LDELIMITER file COMMA node RDELIMITER
     (7) add -> . graph PLUS node
-    (10) remove -> . graph MINUS node
-    (11) display -> . DISPLAY graph
-    (13) file -> . CHARACTER DOT CHARACTER
-    (12) graph -> . CHARACTER
+    (11) remove -> . graph MINUS node
+    (12) display -> . DISPLAY graph
+    (14) file -> . CHARACTER DOT CHARACTER
+    (13) graph -> . CHARACTER
     (8) create -> . CREATE LSLASHES CHARACTER RSLASHES
     (9) create -> . CREATE LSLASHES CHARACTER FROM file RSLASHES
+    (10) create -> . CREATE
 
     DISPLAY         shift and go to state 14
     CHARACTER       shift and go to state 15
@@ -637,7 +652,7 @@ state 38
 
 state 39
 
-    (13) file -> CHARACTER . DOT CHARACTER
+    (14) file -> CHARACTER . DOT CHARACTER
 
     DOT             shift and go to state 24
 
@@ -657,7 +672,7 @@ state 40
 state 41
 
     (9) create -> CREATE LSLASHES CHARACTER FROM . file RSLASHES
-    (13) file -> . CHARACTER DOT CHARACTER
+    (14) file -> . CHARACTER DOT CHARACTER
 
     CHARACTER       shift and go to state 39
 
@@ -687,7 +702,7 @@ state 44
 state 45
 
     (6) add -> graph PLUS LDELIMITER file COMMA . node RDELIMITER
-    (14) node -> . CHARACTER
+    (15) node -> . CHARACTER
 
     CHARACTER       shift and go to state 31
 
@@ -707,20 +722,21 @@ state 47
     (3) function -> . IF function COMMA function SEPARATOR ELSE function
     (4) function -> . FOR LSLASHES term IN function RSLASHES term
     (5) function -> . WHILE LSLASHES term BINOP term RSLASHES term
-    (15) term -> . add
-    (16) term -> . remove
-    (17) term -> . display
-    (18) term -> . file
-    (19) term -> . graph
-    (20) term -> . create
+    (16) term -> . add
+    (17) term -> . remove
+    (18) term -> . display
+    (19) term -> . file
+    (20) term -> . graph
+    (21) term -> . create
     (6) add -> . graph PLUS LDELIMITER file COMMA node RDELIMITER
     (7) add -> . graph PLUS node
-    (10) remove -> . graph MINUS node
-    (11) display -> . DISPLAY graph
-    (13) file -> . CHARACTER DOT CHARACTER
-    (12) graph -> . CHARACTER
+    (11) remove -> . graph MINUS node
+    (12) display -> . DISPLAY graph
+    (14) file -> . CHARACTER DOT CHARACTER
+    (13) graph -> . CHARACTER
     (8) create -> . CREATE LSLASHES CHARACTER RSLASHES
     (9) create -> . CREATE LSLASHES CHARACTER FROM file RSLASHES
+    (10) create -> . CREATE
 
     IF              shift and go to state 5
     FOR             shift and go to state 6
@@ -741,20 +757,21 @@ state 47
 state 48
 
     (4) function -> FOR LSLASHES term IN function RSLASHES . term
-    (15) term -> . add
-    (16) term -> . remove
-    (17) term -> . display
-    (18) term -> . file
-    (19) term -> . graph
-    (20) term -> . create
+    (16) term -> . add
+    (17) term -> . remove
+    (18) term -> . display
+    (19) term -> . file
+    (20) term -> . graph
+    (21) term -> . create
     (6) add -> . graph PLUS LDELIMITER file COMMA node RDELIMITER
     (7) add -> . graph PLUS node
-    (10) remove -> . graph MINUS node
-    (11) display -> . DISPLAY graph
-    (13) file -> . CHARACTER DOT CHARACTER
-    (12) graph -> . CHARACTER
+    (11) remove -> . graph MINUS node
+    (12) display -> . DISPLAY graph
+    (14) file -> . CHARACTER DOT CHARACTER
+    (13) graph -> . CHARACTER
     (8) create -> . CREATE LSLASHES CHARACTER RSLASHES
     (9) create -> . CREATE LSLASHES CHARACTER FROM file RSLASHES
+    (10) create -> . CREATE
 
     DISPLAY         shift and go to state 14
     CHARACTER       shift and go to state 15
@@ -771,20 +788,21 @@ state 48
 state 49
 
     (5) function -> WHILE LSLASHES term BINOP term RSLASHES . term
-    (15) term -> . add
-    (16) term -> . remove
-    (17) term -> . display
-    (18) term -> . file
-    (19) term -> . graph
-    (20) term -> . create
+    (16) term -> . add
+    (17) term -> . remove
+    (18) term -> . display
+    (19) term -> . file
+    (20) term -> . graph
+    (21) term -> . create
     (6) add -> . graph PLUS LDELIMITER file COMMA node RDELIMITER
     (7) add -> . graph PLUS node
-    (10) remove -> . graph MINUS node
-    (11) display -> . DISPLAY graph
-    (13) file -> . CHARACTER DOT CHARACTER
-    (12) graph -> . CHARACTER
+    (11) remove -> . graph MINUS node
+    (12) display -> . DISPLAY graph
+    (14) file -> . CHARACTER DOT CHARACTER
+    (13) graph -> . CHARACTER
     (8) create -> . CREATE LSLASHES CHARACTER RSLASHES
     (9) create -> . CREATE LSLASHES CHARACTER FROM file RSLASHES
+    (10) create -> . CREATE
 
     DISPLAY         shift and go to state 14
     CHARACTER       shift and go to state 15

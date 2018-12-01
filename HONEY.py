@@ -1,3 +1,4 @@
+import sys
 import networkx as nx
 
 numberOfGraphs = 0
@@ -11,14 +12,29 @@ ref = []
 
 
 #Create graph
-def createGraph():
+def createNewGraph():
     createGraph(input("What is going to be the name of the network? "))
 
 def createGraph(name):
-    # ask the user for the name of the file to use to create the graph
-    createGraph(name,input("File Name to use: "))
+    global numberOfGraphs, ref, graphList
+    # Add to the number of graphs one
+    numberOfGraphs += 1
 
-def createGraph(name, fileName):
+    print("CREATE NEW NETWORK")
+    graphName = name
+
+    # While that name is already taken, keep asking the user to use another one
+    while graphName in graphList:
+        graphName = input("A network with that name already exists. Please choose another one. ")
+
+    # create a new graph with the name given by the user
+    locals()[graphName] = nx.Graph()
+    # add the reference to the ref list
+    ref.append(locals()[graphName])
+    # add the name of the list to the graphList
+    graphList.append(graphName)
+
+def createGraphFromFile(name, fileName):
     global numberOfGraphs, ref, graphList
     # Add to the number of graphs one
     numberOfGraphs += 1
@@ -104,6 +120,8 @@ def displayGraph():
     while graphName not in graphList:
         graphName = input("Network does not exists. Please try again. ")
     i = graphList.index(graphName)
+    nx.draw(i)
+    plt.show()
     print(ref[i].nodes(data=True))
 
 

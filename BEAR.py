@@ -5,7 +5,6 @@
 # -----------------------------------------------------------------------------
 
 import networkx as nx
-#import matplotlib.pyplot as plt
 import ply.lex as lex
 import ply.yacc as yacc
 import HONEY as f
@@ -44,7 +43,7 @@ tokens = [
 t_ignore = ' '
 t_DIGIT = r'[0-9]+'
 def t_CHARACTER(t) :
-     r'[a-zA-Z-_.]+'
+     r'[a-zA-Z-_]+'
      if t.value in reserved:
          t.type = reserved[t.value]
      return t
@@ -93,7 +92,8 @@ def p_function(p):
                | IF function COMMA function SEPARATOR ELSE function
                | FOR LSLASHES term IN function RSLASHES term
                | WHILE LSLASHES term BINOP term RSLASHES term'''
-    #if(length(p)==)
+    if(len(p)==7):
+        p[0] = p[3]
     p[0] = p[1]
 
 def p_add(p) :
@@ -102,11 +102,17 @@ def p_add(p) :
     p[0] = p[1]
 def p_create(p):
     '''create : CREATE LSLASHES CHARACTER RSLASHES
-                | CREATE LSLASHES CHARACTER FROM file RSLASHES'''
-    p[0]= f.createGraph()
+                | CREATE LSLASHES CHARACTER FROM file RSLASHES
+                | CREATE'''
+    if(len(p)>6):
+        p[0] = f.createGraphFromFile(p[3], p[5])
+    elif(len(p)>3):
+        p[0]= f.createGraph(p[3])
+    else:
+        p[0]= f.createNewGraph()
 def p_remove(p) :
     'remove : graph MINUS node'
-    p[0] = p[1]
+    p[0] = f.remove(p[3], p[1])
 
 def p_display(p):
     'display : DISPLAY graph'
@@ -118,10 +124,12 @@ def p_graph(p):
 
 def p_file(p) :
     'file : CHARACTER DOT CHARACTER'
-    p[0] = p[1],p[2],p[3]
+    if(not p[3] == "csv"):
+        print("file must be in .csv format")
+    p[0] = p[1]+".csv"
 def p_node(p) :
     'node : CHARACTER'
-    p[0] = p[1]
+    p[0] = f.getNode(p[1])
 
 def p_term(p) :
     '''term : add
@@ -145,5 +153,7 @@ while True:
        s = input('BEAR> ')
    except EOFError:
        break
+   if(s=="exit"): break
    if not s: continue
    result = parser.parse(s)
+   print(s)
