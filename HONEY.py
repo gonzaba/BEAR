@@ -12,53 +12,73 @@ ref = []
 
 #Create graph
 def createGraph():
-        global numberOfGraphs, ref, graphList
-        #Add to the number of graphs one
-        numberOfGraphs += 1
+    createGraph(input("What is going to be the name of the network? "))
 
-        print("CREATE NEW NETWORK")
-        graphName = input("What is going to be the name of the network? ")
+def createGraph(name):
+    # ask the user for the name of the file to use to create the graph
+    createGraph(name,input("File Name to use: "))
 
-        #While that name is already taken, keep asking the user to use another one
-        while graphName in graphList:
-            graphName = input("A network with that name already exists. Please choose another one. ")
+def createGraph(name, fileName):
+    global numberOfGraphs, ref, graphList
+    # Add to the number of graphs one
+    numberOfGraphs += 1
 
-        #create a new graph with the name given by the user
-        locals()[graphName]= nx.Graph()
-        #add the reference to the ref list
-        ref.append(locals()[graphName])
-        #add the name of the list to the graphList
-        graphList.append(graphName)
-        #print(graphList)
+    print("CREATE NEW NETWORK")
+    graphName = name
 
-        # ask the user for the name of the file to use to create the graph
-        fileName = input("File Name to use: ")
-        fileName = fileName
-        # now its looking for the file
-        file = open(fileName, 'r')
+    # While that name is already taken, keep asking the user to use another one
+    while graphName in graphList:
+        graphName = input("A network with that name already exists. Please choose another one. ")
 
-        # Read each individual line and create the person
-        for line in file:
-            if line != '\n':
-                line = line.strip()
-                person = line.split(',')
-                # 0- Name
-                # 1- Age
-                # 2- Gender
-                # 3- Grade
-                # 4- Vaccinated
-                # 5- Infected
+    # create a new graph with the name given by the user
+    locals()[graphName] = nx.Graph()
+    # add the reference to the ref list
+    ref.append(locals()[graphName])
+    # add the name of the list to the graphList
+    graphList.append(graphName)
+    # print(graphList)
+    # now its looking for the file
+    file = open(fileName, 'r')
 
-                # print(person)
-                locals()[graphName].add_node(person[0], age=person[1], gender=person[2], grade=person[3], vaccinated=person[4], infected=person[5])
-                #print(locals()[graphName].nodes(data=True))
-        file.close()
+    # Read each individual line and create the person
+    for line in file:
+        if line != '\n':
+            line = line.strip()
+            person = line.split(',')
+            # 0- Name
+            # 1- Age
+            # 2- Gender
+            # 3- Grade
+            # 4- Vaccinated
+            # 5- Infected
 
-#def createGraph(name):
-#def createGraph(name, file):
-#def remove(node, graph):
-#def getGraph(name):
-#def getNode(name):
+            # print(person)
+            locals()[graphName].add_node(person[0], age=person[1], gender=person[2], grade=person[3],
+                                         vaccinated=person[4], infected=person[5])
+            # print(locals()[graphName].nodes(data=True))
+    file.close()
+
+
+def remove(node, graph):
+    graph.remove_node(node)
+
+def getGraph(name):
+    global graphList, ref
+    index = graphList.find(name)
+    if(index < 0):
+        print("Graph named ",name," not found")
+        return None
+    return ref[index]
+
+def getNode(name):
+    global ref
+    for graph in ref :
+        for node in graph.nodes :
+            if(node.node_id == name) :
+                return node
+    print("Node not found")
+    return None
+
 #View the list graphs that currently exists.
 def viewListOfGraphs():
    global graphList, numberOfGraphs
@@ -67,10 +87,10 @@ def viewListOfGraphs():
    if numberOfGraphs ==0:
        print("There are no networks. Please create one.")
    else:
-       print("There are", end =" ")
-       print(numberOfGraphs, end =" ")
+       print("There are", end, "= ")
+       print(numberOfGraphs, end,"= ")
        print("networks.")
-       print("They are", end =" ")
+       print("They are", end,"= ")
        print(graphList)
 
 
