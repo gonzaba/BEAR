@@ -76,7 +76,7 @@ def createGraphFromFile(name, fileName):
 
 
 def remove(node, graph):
-    graph.remove_node(node)
+    graph.remove_node(self, name)
 
 def getGraph(name):
     global graphList, ref
@@ -87,10 +87,10 @@ def getNode(name):
     global ref
     for graph in ref :
         for node in graph.nodes :
-            if(node.node_id == name) :
+            if(node == name) :
                 return node
     print("Node not found")
-    return None
+
 
 #View the list graphs that currently exists.
 def viewListOfGraphs():

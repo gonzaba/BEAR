@@ -9,6 +9,14 @@ import ply.lex as lex
 import ply.yacc as yacc
 import HONEY as f
 
+
+def help():
+    print('''BEAR: The Social Network Analysis (SNA) language.\n
+            Creating networks: Bear create || Bear create // nameOfGraph \\\\ || Bear create // nameOfGraph from fileName \\\\ \n 
+            Adding Nodes to a Graph: Bear nameOfGraph + [ node ] || Bear nameOfGraph + [ fileName ] \n
+            Removing Nodes from a Graph: Bear nameOfGraph - node \n
+            Displaying a Graph: Bear display nameOfGraph
+    ''')
 #lex part
 reserved = {
     '//' : 'LSLASHES',
@@ -21,6 +29,9 @@ reserved = {
     'from' : 'FROM',
     'while' : 'WHILE',
     'display' : 'DISPLAY',
+    'help'  :   'HELP',
+    'node'  :   'NODE',
+    '-' :   'MINUS',
     'create' : 'CREATE'
 }
 tokens = [
@@ -57,7 +68,6 @@ t_COMMA = r'\,'
 t_BINOP = r'[>=|<|<=|>|!=|==]'
 t_DOT = r'\.'
 t_PLUS = r'\+'
-t_MINUS = r'\-'
 t_SEPARATOR = r'\;'
 t_LDELIMITER = r'\['
 t_RDELIMITER = r'\]'
@@ -126,8 +136,8 @@ def p_file(p) :
     'file : CHARACTER'
     p[0] = p[1]+".csv"
 def p_node(p) :
-    'node : CHARACTER'
-    p[0] = f.getNode(p[1])
+    'node : NODE CHARACTER'
+    p[0] = f.getNode(p[2])
 
 def p_term(p) :
     '''term : add
@@ -135,6 +145,7 @@ def p_term(p) :
             | display
             | file
             | graph
+            | node
             | create'''
     p[0] = p[1]
 
@@ -142,15 +153,14 @@ def p_error(p):
     print('Syntax error in code provided!', s)
 
 parser = yacc.yacc()
-option= input('Test file interaction?(Y/N)')
-if(option=='Y'):
-    import fileTesting
 while True:
    try:
        s = input('BEAR> ')
    except EOFError:
        break
-   if(s=="exit"): break
+   if(s=="exit"):
+       input('Thanks for using BEAR! Press any key to exit.')
+       break
+   if(s=='help'): help()
    if not s: continue
    result = parser.parse(s)
-   print(s)
