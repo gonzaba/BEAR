@@ -97,9 +97,9 @@ def p_function(p):
     p[0] = p[1]
 
 def p_add(p) :
-    '''add : graph PLUS LDELIMITER file COMMA node RDELIMITER
+    '''add : graph PLUS LDELIMITER file RDELIMITER
             | graph PLUS node'''
-    p[0] = p[1]
+    p[0] = f.add(p[4], p[1])
 def p_create(p):
     '''create : CREATE LSLASHES CHARACTER RSLASHES
                 | CREATE LSLASHES CHARACTER FROM file RSLASHES
@@ -116,16 +116,14 @@ def p_remove(p) :
 
 def p_display(p):
     'display : DISPLAY graph'
-    p[0]=f.displayGraph()
+    p[0]=f.displayGraph(p[2])
 
 def p_graph(p):
     'graph : CHARACTER'
     p[0] = p[1]
 
 def p_file(p) :
-    'file : CHARACTER DOT CHARACTER'
-    if(not p[3] == "csv"):
-        print("file must be in .csv format")
+    'file : CHARACTER'
     p[0] = p[1]+".csv"
 def p_node(p) :
     'node : CHARACTER'
@@ -141,8 +139,7 @@ def p_term(p) :
     p[0] = p[1]
 
 def p_error(p):
-    print("Syntax error in provided code! ", s)
-
+    print('Syntax error in code provided!', s)
 
 parser = yacc.yacc()
 option= input('Test file interaction?(Y/N)')

@@ -80,11 +80,8 @@ def remove(node, graph):
 
 def getGraph(name):
     global graphList, ref
-    index = graphList.find(name)
-    if(index < 0):
-        print("Graph named ",name," not found")
-        return None
-    return ref[index]
+    while graphName not in graphList:
+        graphName = input("Network does not exists. Please try again. ")
 
 def getNode(name):
     global ref
@@ -109,19 +106,31 @@ def viewListOfGraphs():
        print("They are", end,"= ")
        print(graphList)
 
+def add(fileName, graphName):
+    file = open(fileName, 'r')
 
-def displayGraph():
+    # Read each individual line and create the person
+    for line in file:
+        if line != '\n':
+            line = line.strip()
+            person = line.split(',')
+            # 0- Name
+            # 1- Age
+            # 2- Gender
+            # 3- Grade
+            # 4- Vaccinated
+            # 5- Infected
+
+            # print(person)
+            locals()[graphName].add_node(person[0], age=person[1], gender=person[2], grade=person[3],
+                                         vaccinated=person[4], infected=person[5])
+            # print(locals()[graphName].nodes(data=True))
+    file.close()
+
+
+def displayGraph(graphName):
     global graphList, numberOfGraphs, ref
-    print("DISPLAY A NETWORK")
-    if numberOfGraphs == 0:
-        print("There are no networks. Please create one.")
-    print(graphList)
-    graphName = input("Which network do you want to display? ")
-    while graphName not in graphList:
-        graphName = input("Network does not exists. Please try again. ")
     i = graphList.index(graphName)
-    nx.draw(i)
-    plt.show()
     print(ref[i].nodes(data=True))
 
 
