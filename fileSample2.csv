@@ -1,3 +1,4 @@
+name, age, gender, grade, vaccinated, infected
 Hermione,11,Female,5,Yes,No
 Dave,10,Male,5,No,Yes
 Alexander,10,Male,5,No,Yes

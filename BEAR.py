@@ -15,7 +15,8 @@ def help():
             Creating networks: Bear create || Bear create // nameOfGraph \\\\ || Bear create // nameOfGraph from fileName \\\\ \n 
             Adding Nodes to a Graph: Bear nameOfGraph + [ node ] || Bear nameOfGraph + [ fileName ] \n
             Removing Nodes from a Graph: Bear nameOfGraph - node \n
-            Displaying a Graph: Bear display nameOfGraph
+            Displaying a Graph: Bear display nameOfGraph \n
+            Graph Operations menu: Bear nameOfGraph operations
     ''')
 #lex part
 reserved = {
@@ -32,6 +33,7 @@ reserved = {
     'node'  :   'NODE',
     '-' :   'MINUS',
     '+' :   'PLUS',
+    'operations'    :   'OPERATIONS',
     'create' : 'CREATE'
 }
 tokens = [
@@ -74,21 +76,19 @@ lexer = lex.lex()
 #underlying parser rules come before anything else, since they establish what the following rules will follow.
 #Hierarchy goes top to bottom. ~Enrique
 
-#TODO: (OPTIONAL) add and implement a graph functions parser rule. Something like graph SPECIALFUNCTIONS.
-
 def p_define(p):
-    'test : BEAR function'
+    'define : BEAR function'
     #= ^p[0]   ^p[1]
     #treat p as if it were a list; each separate word is a cell in the list.
     p[0]= p[2]
-#TODO: implement all if/else conditions of these parser rules. If you need help let me know. ~Enrique
 def p_function(p):
     '''function : term
-               | IF function COMMA function SEPARATOR ELSE function
-               | FOR LSLASHES term IN function RSLASHES term
+               | FOR LSLASHES term IN term RSLASHES function
                | WHILE LSLASHES term BINOP term RSLASHES term'''
-    if(len(p)==7):
-        p[0] = p[3]
+    if('for' in p):
+        print('for loop')
+    if('while' in p):
+        print("while loop")
     p[0] = p[1]
 
 def p_add(p) :
@@ -115,6 +115,10 @@ def p_display(p):
     'display : DISPLAY graph'
     p[0]=f.displayGraph(p[2])
 
+def p_operations(p):
+    'operations : graph OPERATIONS'
+    p[0] = f.operations(p[1])
+
 def p_graph(p):
     'graph : ID'
     p[0] = p[1]
@@ -133,7 +137,8 @@ def p_term(p) :
             | file
             | graph
             | node
-            | create'''
+            | create
+            | operations'''
     p[0] = p[1]
 
 def p_error(p):

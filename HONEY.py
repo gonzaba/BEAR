@@ -17,6 +17,7 @@ attrs = []
 #TODO: add an attribute method with which the end-user can add attributes to the graph.
 def createNewGraph():
     createGraph(input("What is going to be the name of the network? "))
+
 #TODO: same as createNewGraph
 def createGraph(name):
     global numberOfGraphs, ref, graphList
@@ -73,8 +74,7 @@ def createGraphFromFile(name, fileName):
 
             # print(person)
             attributes= person[1:]
-            locals()[graphName].add_node(person[0], my_attrs=attributes)
-            # print(locals()[graphName].nodes(data=True))
+            locals()[graphName].add_node(person[0], Attributes=attributes)
     file.close()
     print("Created a new network: ", graphName)
 
@@ -131,7 +131,6 @@ def add(fileName, graphName):
             # print(person)
             locals()[graphName].add_node(person[0], age=person[1], gender=person[2], grade=person[3],
                                          vaccinated=person[4], infected=person[5])
-            # print(locals()[graphName].nodes(data=True))
     file.close()
 
 #TODO: Fix this method
@@ -139,10 +138,32 @@ def addNode(graphName, nodeName):
     global attrs
     graph = getGraph(graphName)
     created= []
-    for i in range(0, len(attrs)):
+    for i in range(1, len(attrs)):
         created[i] = input('enter value for: '+attrs[i])
     locals()[graphName].add_node(nodeName, my_attrs=created[1:])
 
+def operations(name):
+    global graphList
+    while name not in graphList:
+        print("Network does not exist. Please try again. ")
+        return
+    print("Network Operations menu. Working on graph"+ name + "\n")
+    flag = input('''Choose your option:
+                [1] Union with another network
+                [2] Disjoint Union with another network
+                [3] Directed copy of this network
+                [4] Undirected copy of this network.
+                [5] Exit menu
+                Enter your selection: ''')
+    if(flag=='1'):
+        union(name)
+    elif(flag=='2'):
+        disjointUnion(name)
+    elif(flag=='3'):
+        directedCopy(name)
+    elif(flag=='4'):
+        undirectedCopy(name)
+    else: return
 
 
 
@@ -152,7 +173,7 @@ def displayGraph(graphName):
     print(ref[i].nodes(data=True))
 
 
-def union():
+def union(graph1):
     global graphList, numberOfGraphs, ref
     print("UNION OF NETWORKS")
     index1 =0
@@ -160,17 +181,14 @@ def union():
     if numberOfGraphs < 2:
         print("There is only one network. Please create another network.")
     else:
+        index1 = graphList.index(graph1)
         print(graphList)
-        first = input("Which is the first network? ")
-        while first not in graphList:
-            first = input("Network does not exists. Please try again. ")
-        index1 = graphList.index(first)
         second = input("Which is the second network? ")
         while second not in graphList:
-            second = input("Network does not exists. Please try again. ")
+            second = input("Network does not exist. Please try again. ")
         index2 = graphList.index(second)
 
-        graphName = input("What name will the union of networks be? ")
+        graphName = input("What name will the union of networks have? ")
 
         numberOfGraphs += 1
         while graphName in graphList:
@@ -181,7 +199,7 @@ def union():
         graphList.append(graphName)
 
 
-def disjointUnion():
+def disjointUnion(graph1):
     global graphList, numberOfGraphs, ref
     print("DISJOINT UNION OF NETWORKS")
     index1 =0
@@ -190,16 +208,13 @@ def disjointUnion():
         print("There is only one network. Please create another network.")
     else:
         print(graphList)
-        first = input("Which is the first network? ")
-        while first not in graphList:
-            first = input("Network does not exists. Please try again. ")
-        index1 = graphList.index(first)
+        index1 = graphList.index(graph1)
         second = input("Which is the second network? ")
         while second not in graphList:
-            second = input("Network does not exists. Please try again. ")
+            second = input("Network does not exist. Please try again. ")
         index2 = graphList.index(second)
 
-        graphName = input("What name will the disjoint_union of networks be? ")
+        graphName = input("What name will the disjoint union of the networks have? ")
 
         numberOfGraphs += 1
         while graphName in graphList:
@@ -212,18 +227,14 @@ def disjointUnion():
 
 #convert_to_undirected
 #returns  A deepcopy of the graph.
-def undirectedCopy():
+def undirectedCopy(graph1):
     global graphList, numberOfGraphs, ref
     print("UNDIRECTED COPY")
     index1 = 0
     if numberOfGraphs < 1:
-        print("A network doesn't exist. Please create one.")
+        print("A network doesn't exist. Please try again after creating a network.")
     else:
-        print(graphList)
-        first = input("Which network do you want to convert to undirected? ")
-        while first not in graphList:
-            first = input("Network does not exists. Please try again. ")
-        index1 = graphList.index(first)
+        index1 = graphList.index(graph1)
 
         graphName = input("What name will the copy have? ")
 
@@ -231,25 +242,25 @@ def undirectedCopy():
         while graphName in graphList:
             graphName = input("A network with that name already exists. Please choose another one. ")
 
-        locals()[graphName] = nx.convert_to_undirected(ref[index1])
+        locals()[graphName] = nx.to_undirected(ref[index1])
         ref.append(locals()[graphName])
         graphList.append(graphName)
 
 
 #Convert_to_directed
 # Returns A directed graph with the same name, same nodes, and with each edge (u,v,data) replaced by two directed edges (u,v,data) and (v,u,data).
-def directedCopy():
+def directedCopy(graph1):
     global graphList, numberOfGraphs, ref
     print("DIRECTED COPY")
     index1 = 0
     if numberOfGraphs < 1:
-        print("A network doesn't exist. Please create one.")
+        print("A network doesn't exist. Please try again after creating a network.")
+        return
     else:
-        print(graphList)
-        first = input("Which network do you want to convert to directed? ")
-        while first not in graphList:
-            first = input("Network does not exists. Please try again. ")
-        index1 = graphList.index(first)
+        while graph1 not in graphList:
+            print("Network does not exist. Please try again. ")
+            return
+        index1 = graphList.index(graph1)
 
         graphName = input("What name will the copy have? ")
 
@@ -257,7 +268,7 @@ def directedCopy():
         while graphName in graphList:
             graphName = input("A network with that name already exists. Please choose another one. ")
 
-        locals()[graphName] = nx.convert_to_directed(ref[index1])
+        locals()[graphName] = nx.to_directed(ref[index1])
         ref.append(locals()[graphName])
         graphList.append(graphName)
 
@@ -296,17 +307,6 @@ def subgraph():
         locals()[graphName] = ref[index1].subgraph(lst)
         ref.append(locals()[graphName])
         graphList.append(graphName)
-
-
-
-
-
-#Create new Graph
-#R =nx.Graph()
-#Graph is the union of G and M. AKA combining both lists.
-#R = nx.union(G,M)
-
-#print (R.nodes(data=True))
 
 
 
