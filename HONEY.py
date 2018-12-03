@@ -14,11 +14,8 @@ attrs = []
 
 
 #Create graph
-#TODO: add an attribute method with which the end-user can add attributes to the graph.
 def createNewGraph():
     createGraph(input("What is going to be the name of the network? "))
-
-#TODO: same as createNewGraph
 def createGraph(name):
     global numberOfGraphs, ref, graphList
     # Add to the number of graphs one
@@ -28,7 +25,11 @@ def createGraph(name):
     # While that name is already taken, keep asking the user to use another one
     while graphName in graphList:
         graphName = input("A network with that name already exists. Please choose another one. ")
-
+    #Lets the user add attributes until they type END
+    at = input("add a new attribute for this graph. type END when finished: ")
+    while (not at == 'END'):
+        attrs.append(at)
+        at = input("add a new attribute for this graph. type END when finished: ")
     # create a new graph with the name given by the user
     locals()[graphName] = nx.Graph()
     # add the reference to the ref list
@@ -74,7 +75,7 @@ def remove(node, graphName):
     global graphList, numberOfGraphs, ref
     graph = getGraph(graphName)
     graph.remove_node(node)
-    print("removed node "+node)
+    print("Removed node "+node)
 
 def getGraph(name):
     global graphList, numberOfGraphs, ref
@@ -120,14 +121,14 @@ def add(fileName, graphName):
             graph.add_node(person[0], Attributes=attributes)
     file.close()
 
-#TODO: Fix this method
 def addNode(graphName, nodeName):
     global attrs
     graph = getGraph(graphName)
     created= []
-    for i in range(1, len(attrs)):
-        created[i] = input('enter value for: '+attrs[i])
-    locals()[graphName].add_node(nodeName, my_attrs=created[1:])
+    for i in range(len(attrs)):
+        created.append(input('enter value for '+attrs[i]+": "))
+    graph.add_node(nodeName, Attributes=created[1:])
+    print("Added node "+nodeName)
 
 def operations(name):
     global graphList
