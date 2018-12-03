@@ -29,52 +29,40 @@ reserved = {
     'from' : 'FROM',
     'while' : 'WHILE',
     'display' : 'DISPLAY',
-    'help'  :   'HELP',
     'node'  :   'NODE',
     '-' :   'MINUS',
+    '+' :   'PLUS',
     'create' : 'CREATE'
 }
 tokens = [
-    'DIGIT',
     'CHARACTER',
     'ID',
-    'LPAREN',
-    'RPAREN',
     'LDELIMITER',
     'RDELIMITER',
     'COMMA',
     'SEPARATOR',
     'DOT',
-    'PLUS',
-    'MINUS',
     'BINOP',
-    'BINARY'
 
 ] + (list(reserved.values()))
 t_ignore = ' '
-t_DIGIT = r'[0-9]+'
-def t_CHARACTER(t) :
-     r'[a-zA-Z-_]+'
-     if t.value in reserved:
-         t.type = reserved[t.value]
-     return t
-t_ID = r'[a-zA-Z0-9-_]+'
-t_LPAREN = r'\('
-t_RPAREN = r'\)'
+def t_ID(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = reserved.get(t.value, 'ID')  # Check for reserved words
+    return t
+
+
 t_LSLASHES = r'//'
 t_RSLASHES = r'\\\\'
-t_BINARY = r'[\|\|&&]'
 t_COMMA = r'\,'
 t_BINOP = r'[>=|<|<=|>|!=|==]'
 t_DOT = r'\.'
+t_MINUS = r'-'
 t_PLUS = r'\+'
 t_SEPARATOR = r'\;'
 t_LDELIMITER = r'\['
 t_RDELIMITER = r'\]'
 
-def t_newline(t):
-    r'\n+'
-    t.lexer.lineno += len(t.value)
 
 def t_error(t):
     print("Illegal character '%s" %t.value[0])
@@ -86,17 +74,14 @@ lexer = lex.lex()
 #underlying parser rules come before anything else, since they establish what the following rules will follow.
 #Hierarchy goes top to bottom. ~Enrique
 
-precedence = (
-    ('left', 'LSLASHES', 'RSLASHES'),
-    ('left', 'LPAREN', 'RPAREN')
-)
+#TODO: (OPTIONAL) add and implement a graph functions parser rule. Something like graph SPECIALFUNCTIONS.
 
 def p_define(p):
     'test : BEAR function'
     #= ^p[0]   ^p[1]
     #treat p as if it were a list; each separate word is a cell in the list.
     p[0]= p[2]
-
+#TODO: implement all if/else conditions of these parser rules. If you need help let me know. ~Enrique
 def p_function(p):
     '''function : term
                | IF function COMMA function SEPARATOR ELSE function
@@ -108,11 +93,13 @@ def p_function(p):
 
 def p_add(p) :
     '''add : graph PLUS LDELIMITER file RDELIMITER
-            | graph PLUS node'''
-    p[0] = f.add(p[4], p[1])
+            | graph PLUS ID'''
+    if(len(p)>4):
+        p[0] = f.add(p[4], p[1])
+    else: f.addNode(p[1], p[3])
 def p_create(p):
-    '''create : CREATE LSLASHES CHARACTER RSLASHES
-                | CREATE LSLASHES CHARACTER FROM file RSLASHES
+    '''create : CREATE LSLASHES ID RSLASHES
+                | CREATE LSLASHES ID FROM file RSLASHES
                 | CREATE'''
     if(len(p)>6):
         p[0] = f.createGraphFromFile(p[3], p[5])
@@ -129,14 +116,14 @@ def p_display(p):
     p[0]=f.displayGraph(p[2])
 
 def p_graph(p):
-    'graph : CHARACTER'
+    'graph : ID'
     p[0] = p[1]
 
 def p_file(p) :
-    'file : CHARACTER'
-    p[0] = p[1]+".csv"
+    'file : ID DOT ID'
+    p[0] = p[1]+p[2]+p[3]
 def p_node(p) :
-    'node : NODE CHARACTER'
+    'node : NODE ID'
     p[0] = f.getNode(p[2])
 
 def p_term(p) :
@@ -159,7 +146,7 @@ while True:
    except EOFError:
        break
    if(s=="exit"):
-       input('Thanks for using BEAR! Press any key to exit.')
+       input('Thanks for using BEAR! Press the enter key to exit.')
        break
    if(s=='help'): help()
    if not s: continue

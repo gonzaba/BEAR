@@ -1,5 +1,6 @@
 import sys
 import networkx as nx
+from itertools import islice
 
 numberOfGraphs = 0
 
@@ -7,20 +8,20 @@ numberOfGraphs = 0
 graphList = []
 #Here are the references to each graph created. This DOES NOT contain the names of it
 ref = []
-
+#List of attributes to be used for every graph created in the current running instance of BEAR.
+attrs = []
 #The link between graphList and ref is the index.
 
 
 #Create graph
+#TODO: add an attribute method with which the end-user can add attributes to the graph.
 def createNewGraph():
     createGraph(input("What is going to be the name of the network? "))
-
+#TODO: same as createNewGraph
 def createGraph(name):
     global numberOfGraphs, ref, graphList
     # Add to the number of graphs one
     numberOfGraphs += 1
-
-    print("CREATE NEW NETWORK")
     graphName = name
 
     # While that name is already taken, keep asking the user to use another one
@@ -33,13 +34,13 @@ def createGraph(name):
     ref.append(locals()[graphName])
     # add the name of the list to the graphList
     graphList.append(graphName)
+    print("Created a new network: ", graphName)
 
 def createGraphFromFile(name, fileName):
-    global numberOfGraphs, ref, graphList
+    global numberOfGraphs, ref, graphList, attrs
     # Add to the number of graphs one
     numberOfGraphs += 1
 
-    print("CREATE NEW NETWORK")
     graphName = name
 
     # While that name is already taken, keep asking the user to use another one
@@ -57,6 +58,8 @@ def createGraphFromFile(name, fileName):
     file = open(fileName, 'r')
 
     # Read each individual line and create the person
+    line1 = file.readline().strip()
+    attrs = line1.split(',')
     for line in file:
         if line != '\n':
             line = line.strip()
@@ -69,19 +72,23 @@ def createGraphFromFile(name, fileName):
             # 5- Infected
 
             # print(person)
-            locals()[graphName].add_node(person[0], age=person[1], gender=person[2], grade=person[3],
-                                         vaccinated=person[4], infected=person[5])
+            attributes= person[1:]
+            locals()[graphName].add_node(person[0], my_attrs=attributes)
             # print(locals()[graphName].nodes(data=True))
     file.close()
+    print("Created a new network: ", graphName)
 
-
-def remove(node, graph):
-    graph.remove_node(self, name)
+def remove(node, graphName):
+    global graphList, numberOfGraphs, ref
+    i = graphList.index(graphName)
+    ref[i].remove_node(node)
 
 def getGraph(name):
-    global graphList, ref
-    while graphName not in graphList:
-        graphName = input("Network does not exists. Please try again. ")
+    global graphList, numberOfGraphs, ref
+    while name not in graphList:
+        name = input("Network does not exists. Please try again. ")
+    i = graphList.index(name)
+    return ref[i]
 
 def getNode(name):
     global ref
@@ -126,6 +133,17 @@ def add(fileName, graphName):
                                          vaccinated=person[4], infected=person[5])
             # print(locals()[graphName].nodes(data=True))
     file.close()
+
+#TODO: Fix this method
+def addNode(graphName, nodeName):
+    global attrs
+    graph = getGraph(graphName)
+    created= []
+    for i in range(0, len(attrs)):
+        created[i] = input('enter value for: '+attrs[i])
+    locals()[graphName].add_node(nodeName, my_attrs=created[1:])
+
+
 
 
 def displayGraph(graphName):
