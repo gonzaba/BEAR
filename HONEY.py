@@ -65,14 +65,6 @@ def createGraphFromFile(name, fileName):
         if line != '\n':
             line = line.strip()
             person = line.split(',')
-            # 0- Name
-            # 1- Age
-            # 2- Gender
-            # 3- Grade
-            # 4- Vaccinated
-            # 5- Infected
-
-            # print(person)
             attributes= person[1:]
             locals()[graphName].add_node(person[0], Attributes=attributes)
     file.close()
@@ -80,8 +72,9 @@ def createGraphFromFile(name, fileName):
 
 def remove(node, graphName):
     global graphList, numberOfGraphs, ref
-    i = graphList.index(graphName)
-    ref[i].remove_node(node)
+    graph = getGraph(graphName)
+    graph.remove_node(node)
+    print("removed node "+node)
 
 def getGraph(name):
     global graphList, numberOfGraphs, ref
@@ -114,6 +107,8 @@ def viewListOfGraphs():
        print(graphList)
 
 def add(fileName, graphName):
+    global attrs
+    graph = getGraph(graphName)
     file = open(fileName, 'r')
 
     # Read each individual line and create the person
@@ -121,16 +116,8 @@ def add(fileName, graphName):
         if line != '\n':
             line = line.strip()
             person = line.split(',')
-            # 0- Name
-            # 1- Age
-            # 2- Gender
-            # 3- Grade
-            # 4- Vaccinated
-            # 5- Infected
-
-            # print(person)
-            locals()[graphName].add_node(person[0], age=person[1], gender=person[2], grade=person[3],
-                                         vaccinated=person[4], infected=person[5])
+            attributes = person[1:]
+            graph.add_node(person[0], Attributes=attributes)
     file.close()
 
 #TODO: Fix this method
