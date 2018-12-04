@@ -14,7 +14,7 @@ def help():
     print('''BEAR: The Social Network Analysis (SNA) language.\n
             Creating networks: Bear create || Bear create // nameOfGraph \\\\ || Bear create // nameOfGraph from fileName \\\\ \n 
             Adding Nodes to a Graph: Bear nameOfGraph + node s || Bear nameOfGraph + [ fileName ] \n
-            Removing Nodes from a Graph: Bear nameOfGraph - node \n
+            Removing Nodes from a Graph: Bear nameOfGraph - node nameOfNode \n
             Displaying a Graph: Bear display nameOfGraph \n
             Graph Operations menu: Bear nameOfGraph operations \n
             Exit BEAR: exit
