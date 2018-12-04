@@ -1,4 +1,4 @@
-name, age, gender, grade, vaccinated, infected
+name,age,gender,grade,vaccinated,infected
 Jessie,11,Female,5,No,Yes
 Cesar,10,Male,5,No,Yes
 Pepito,10,Male,5,No,Yes
