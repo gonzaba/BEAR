@@ -154,6 +154,8 @@ while True:
    if(s=="exit"):
        input('Thanks for using BEAR! Press the enter key to exit.')
        break
-   if(s=='help'): help()
+   if(s=='help'):
+       help()
+       continue
    if not s: continue
    result = parser.parse(s)
