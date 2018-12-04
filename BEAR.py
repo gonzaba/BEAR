@@ -16,7 +16,8 @@ def help():
             Adding Nodes to a Graph: Bear nameOfGraph + [ node ] || Bear nameOfGraph + [ fileName ] \n
             Removing Nodes from a Graph: Bear nameOfGraph - node \n
             Displaying a Graph: Bear display nameOfGraph \n
-            Graph Operations menu: Bear nameOfGraph operations
+            Graph Operations menu: Bear nameOfGraph operations \n
+            Exit BEAR: exit
     ''')
 #lex part
 reserved = {

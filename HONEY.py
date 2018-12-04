@@ -125,9 +125,9 @@ def addNode(graphName, nodeName):
     global attrs
     graph = getGraph(graphName)
     created= []
-    for i in range(len(attrs)):
+    for i in range(1, len(attrs)):
         created.append(input('enter value for '+attrs[i]+": "))
-    graph.add_node(nodeName, Attributes=created[1:])
+    graph.add_node(nodeName, Attributes=created[0:])
     print("Added node "+nodeName)
 
 def operations(name):
