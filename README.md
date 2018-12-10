@@ -8,8 +8,6 @@
 
 [Language Features](https://github.com/gonzaba/BEAR#language-features)
 
-[Implementation and Requirement Tools](https://github.com/gonzaba/BEAR#implementation-and-requirement-tools)
-
 [Project Plan and Timeline](https://github.com/gonzaba/BEAR#project-plan-and-timeline)
 
 [Final Report](https://github.com/gonzaba/BEAR#final-report)
@@ -29,7 +27,7 @@ Recapitulating, BEAR is focused on social network analysis that hopes to facilit
 
 ## Project Demo 
 
-WIP
+<iframe src="https://drive.google.com/file/d/1GKgXXju46N9BScxHhrRXpjUbJwQ7LRHq/preview" width="640" height="480"></iframe>
 
 ## Language features
 
@@ -42,12 +40,9 @@ Oleksandr Kaleniuk says:
 
 After reading Kaleniuk’s article, we can only nod in agreement. 
 
-Bear is a purely interpreted language. It's Scanner and Parser are implemented with [PLY](https://github.com/dabeaz/ply). The Language Definiton can be accessed [here](https://github.com/gonzaba/BEAR/raw/master/EBNF%20definition%20-%20BEAR.pdf).
+BEAR is a purely interpreted language. It's Scanner and Parser are implemented with [PLY](https://github.com/dabeaz/ply), and it uses the Open-Source graph library [NetworkX](https://networkx.github.io/). The Language Definiton can be accessed [here](https://github.com/gonzaba/BEAR/raw/master/EBNF%20definition%20-%20BEAR.pdf).
 
 Our approach to BEAR follows the Keep It Simple, Stupid (KISS) design philosophy. As such, no for loops or conditionals are implemented. Everything can and should be written in one line. For a list of commands, type 'help' in the BEAR interpreter.
-
-
-## Project plan and timeline
 
 
 ## Final Report
