@@ -27,7 +27,7 @@ Recapitulating, BEAR is focused on social network analysis that hopes to facilit
 
 ## Project Demo 
 
-<iframe src="https://drive.google.com/file/d/1GKgXXju46N9BScxHhrRXpjUbJwQ7LRHq/preview" width="1280" height="720"></iframe>
+<iframe src="https://drive.google.com/file/d/1KCYvTvO38WS2_n-akPcYD7cLjBnwkwwk/preview" width="1280" height="720"></iframe>
 
 ## Language features
 
