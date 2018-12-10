@@ -2,17 +2,15 @@
 
 ## Table of Contents
 
-[Introduction](https://github.com/gonzaba/BEAR#indroduction)
+[Introduction](https://gonzaba.github.io/BEAR/#indroduction)
 
-[Project Demo](https://github.com/gonzaba/BEAR#project-demo)
+[Project Demo](https://gonzaba.github.io/BEAR/#project-demo)
 
-[Language Features](https://github.com/gonzaba/BEAR#language-features)
+[Language Features](https://gonzaba.github.io/BEAR/#language-features)
 
-[Project Plan and Timeline](https://github.com/gonzaba/BEAR#project-plan-and-timeline)
+[Final Report](https://gonzaba.github.io/BEAR/#final-report)
 
-[Final Report](https://github.com/gonzaba/BEAR#final-report)
-
-[Creators](https://github.com/gonzaba/BEAR#creators)
+[Creators](https://gonzaba.github.io/BEAR/#creators)
 
 ## Indroduction
 
