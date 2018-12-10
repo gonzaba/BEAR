@@ -27,7 +27,7 @@ Recapitulating, BEAR is focused on social network analysis that hopes to facilit
 
 ## Project Demo 
 
-For the project demo, visit the [project website](https://gonzaba.github.io/BEAR/)
+For the project demo, visit the [project website](https://gonzaba.github.io/BEAR/).
 
 ## Language features
 
