@@ -38,14 +38,14 @@ Oleksandr Kaleniuk says:
 
 After reading Kaleniuk’s article, we can only nod in agreement. 
 
-BEAR is a purely interpreted language. It's Scanner and Parser are implemented with [PLY](https://github.com/dabeaz/ply), and it uses the Open-Source graph library [NetworkX](https://networkx.github.io/). The Language Definiton can be accessed [here](https://github.com/gonzaba/BEAR/raw/master/EBNF%20definition%20-%20BEAR.pdf).
+BEAR is a purely interpreted language. It's Scanner and Parser are implemented with [PLY](https://github.com/dabeaz/ply), and it uses the Open-Source graph library [NetworkX](https://networkx.github.io/). The Language Definiton can be accessed [here](https://docs.google.com/viewer?url=https://github.com/gonzaba/BEAR/raw/master/EBNF%20definition%20-%20BEAR.pdf).
 
 Our approach to BEAR follows the Keep It Simple, Stupid (KISS) design philosophy. As such, no for loops or conditionals are implemented. Everything can and should be written in one line. For a list of commands, type 'help' in the BEAR interpreter.
 
 
 ## Final Report
 
-The final report can be found on the visiting the following link: [Click Here](https://docs.google.com/document/d/1BGKyqMT-UpjX2Upgg2JDWsCdSWxdvCNxa8dhTDRPt0k/edit?usp=sharing)
+The final report can be found on the visiting the following link: [Click Here](https://docs.google.com/viewer?url=https://github.com/gonzaba/BEAR/raw/master/Final%20Report.pdf)
 
 
 ## Creators
